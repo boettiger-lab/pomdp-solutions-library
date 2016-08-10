@@ -1,0 +1,2 @@
+states,actions,observations,f,r,K,precision,memory,end_condition,run_time,final_precision
+41,41,41,ricker,1,20,0.75,16000,target precision reached,45.52,0.732812
