@@ -7,6 +7,7 @@ reward_fn <- function(x,h) pmin(x,h)
 discount <- 0.95
 precision <- .1
 
+
 sigma_g <- sqrt(log(1 + 0.5 / 6)) # Scale the log-standard-deviation to result in similar variance to a uniform distribution of width 0.5
 sigma_m <- sigma_g
 
@@ -16,9 +17,9 @@ models = rbind(
 )
 
 for(i in 1:dim(models)[1]) {
-  f <- function(x, h, r = models[i,1], K = models[i,2]){
+  f <- function(x, h, r = 0.5, K = 50, C = models[i, 1]){
     s <- pmax(x - h, 0)
-    s * exp(r * (1 - s / K) )
+    s * exp(r * (1 - s / K) * (s - C) / K)
   }
   m <- fisheries_matrices(states, actions, obs, reward_fn, f, sigma_g, sigma_m)
   log_data <- data.frame(model = "ricker", r = models[i,1], K = models[i,2], C = NA, sigma_g = sigma_g, sigma_m = sigma_m)
