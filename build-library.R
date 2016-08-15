@@ -5,7 +5,7 @@ actions <- states
 obs <- states
 reward_fn <- function(x,h) pmin(x,h)
 discount <- 0.99
-precision <- 1
+precision <- 2
 
 sigma_g <- sqrt(log(1 + 0.1 / 6)) # Scale the log-standard-deviation to result in similar variance to a uniform distribution of width 0.5
 sigma_m <- sigma_g
@@ -19,7 +19,7 @@ for(i in 1:dim(models)[1]) {
   }
   m <- fisheries_matrices(states, actions, obs, reward_fn, f, sigma_g, sigma_m)
   log_data <- data.frame(model = "allen", r = 0.5, K = 40, C = models[i,1], sigma_g = sigma_g, sigma_m = sigma_m)
-  alpha <- sarsop(m$transition, m$observation, m$reward, discount, precision = precision,
+  alpha <- sarsop(m$transition, m$observation, m$reward, discount, precision = precision, memory = 15000,
                   log_dir = ".", log_data = log_data)
 
 }
