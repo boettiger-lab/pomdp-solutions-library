@@ -17,11 +17,15 @@ models = rbind(
 )
 
 for(i in 1:dim(models)[1]) {
-  f <- function(x, h, r = 0.5, K = 50, C = models[i, 1]){
-    s <- pmax(x - h, 0)
-    s * exp(r * (1 - s / K) * (s - C) / K)
+  
+  
+  f <- function(x, h, r = models[i,1], K = models[i,2]){
+  s <- pmax(x - h, 0)
+  s * exp(r * (1 - s / K) )  
   }
   m <- fisheries_matrices(states, actions, obs, reward_fn, f, sigma_g, sigma_m)
+  
+  
   log_data <- data.frame(model = "ricker", r = models[i,1], K = models[i,2], C = NA, sigma_g = sigma_g, sigma_m = sigma_m)
   alpha <- sarsop(m$transition, m$observation, m$reward, discount, precision = precision, memory = 15000,
                   log_dir = ".", log_data = log_data)
