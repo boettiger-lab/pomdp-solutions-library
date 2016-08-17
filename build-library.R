@@ -1,6 +1,6 @@
 library("appl")
 
-states <- 0:50
+states <- 0:20
 actions <- states
 obs <- states
 reward_fn <- function(x,h) pmin(x,h)
@@ -12,8 +12,8 @@ sigma_g <- sqrt(log(1 + 0.5 / 6)) # Scale the log-standard-deviation to result i
 sigma_m <- sigma_g
 
 models = rbind(
-  data.frame(r = seq(0.1, 1.6, length = 4), K = 40),
-  data.frame(r = 0.6, K = seq(10, 40, length = 4))
+  data.frame(r = c(.4, 1, 2), K = 18),
+  data.frame(r = 1, K = c(10,14,18))
 )
 
 for(i in 1:dim(models)[1]) {
