@@ -15,7 +15,7 @@ library("dplyr")
 
 ```{r}
 log = "../library"
-meta <- meta_from_log(data.frame(model = "ricker", r = 1.1), log = log)
+meta <- meta_from_log(data.frame(model = "ricker", r = 0.6, K = 30), log = log)
 meta
 ```
 
@@ -84,7 +84,7 @@ Simulate dynamics under the policy
 
 ```{r}
 set.seed(1234)
-sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 5, Tmax = 100, alpha = alpha)
+sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 5, Tmax = 50, alpha = alpha)
 sim$df %>% select(-value) %>% gather(variable, state, -time) %>%
 ggplot(aes(time, state, color = variable)) + geom_line() + geom_point() 
 ```
@@ -116,7 +116,3 @@ sim_df <- purrr::map_df(1:100, reps)
 ggplot(sim_df, aes(time, state, group = sim)) + geom_line()
 ```
 
-
-```{r}
-#ggplot(sim_df, aes(time, action, group = sim)) + geom_line()
-```

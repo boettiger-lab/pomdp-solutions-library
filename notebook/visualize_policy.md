@@ -28,17 +28,17 @@ library("dplyr")
 
 ```r
 log = "../library"
-meta <- meta_from_log(data.frame(model = "ricker", r = 1.1), log = log)
+meta <- meta_from_log(data.frame(model = "ricker", r = 0.6, K = 30), log = log)
 meta
 ```
 
 ```
-##                                     id load_time_sec init_time_sec
-## 9 75ee70a6-6033-462e-bddb-a3e7245550de          0.64         28.86
-##   run_time_sec final_precision end_condition n_states n_obs n_actions
-## 9      2106.44         7.09157          <NA>       51    51        51
-##   discount                date  model   r  K    C   sigma_g   sigma_m
-## 9     0.95 2016-08-15 05:59:44 ricker 1.1 40 <NA> 0.2829182 0.2829182
+##                                      id load_time_sec init_time_sec
+## 13 1592931b-7a03-481f-bc31-f49353df24c9          0.62         22.29
+##    run_time_sec final_precision end_condition n_states n_obs n_actions
+## 13      1770.79         2.04002          <NA>       51    51        51
+##    discount                date  model   r  K    C   sigma_g   sigma_m
+## 13     0.95 2016-08-15 08:19:54 ricker 0.6 30 <NA> 0.2829182 0.2829182
 ```
 
 ## Import a model solution from the library
@@ -115,7 +115,7 @@ Simulate dynamics under the policy
 
 ```r
 set.seed(1234)
-sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 5, Tmax = 100, alpha = alpha)
+sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 5, Tmax = 50, alpha = alpha)
 sim$df %>% select(-value) %>% gather(variable, state, -time) %>%
 ggplot(aes(time, state, color = variable)) + geom_line() + geom_point() 
 ```
@@ -155,8 +155,3 @@ ggplot(sim_df, aes(time, state, group = sim)) + geom_line()
 
 ![](visualize_policy_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
-
-
-```r
-#ggplot(sim_df, aes(time, action, group = sim)) + geom_line()
-```
