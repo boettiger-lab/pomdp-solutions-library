@@ -16,8 +16,7 @@ library("dplyr")
 ```{r}
 log = "../library"
 
-#who <- data.frame(model = "ricker", r = 0.6, K = 30)
-who <- data.frame(model = "allen", r = 1, K = 30, C = 5)
+who <- data.frame(model = "ricker", r = 0.6, K = 30)
 
 meta <- meta_from_log(who, log = log)
 meta

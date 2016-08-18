@@ -1,31 +1,57 @@
----
-output:
-  html_document: 
-    keep_md: yes
-    variant: markdown_github
----  
 
 
-```{r}
+
+```r
 library("appl")
 library("ggplot2")
 library("tidyr")
 library("dplyr")
 ```
 
-```{r}
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+
+```r
 log = "../library"
 
 #who <- data.frame(model = "ricker", r = 0.6, K = 30)
+
+# who <- data.frame(model = "allen", r= 1, K = 50, C = 15)
+# who <- data.frame(model = "allen", r = 1, K = 30, C = 15)
 who <- data.frame(model = "allen", r = 1, K = 30, C = 5)
 
 meta <- meta_from_log(who, log = log)
 meta
 ```
 
+```
+##                                      id load_time_sec init_time_sec
+## 45 476a1b34-ce6e-4ffc-823e-651728fd57ef           0.3          7.91
+##    run_time_sec final_precision end_condition n_states n_obs n_actions
+## 45       3011.5        0.577256          <NA>       41    41        41
+##    discount                date model r  K C sigma_g sigma_m
+## 45     0.99 2016-08-17 23:09:26 allen 1 30 5    0.05    0.05
+```
+
 ## Import a model solution from the library
 
-```{r}
+
+```r
 i <- 1 # just use first match from the log
 
 alpha <- alphas_from_log(meta, log = log)[[i]]
@@ -38,7 +64,8 @@ discount = meta$discount[[i]]
 
 Find the deterministic optimal solution for this model
 
-```{r}
+
+```r
 S_star <- round( optimize(function(x) -f(x,0) + x / discount, c(1, n_states) )$minimum)
 det_policy <- function(x) if(x <= S_star) 1 else x - S_star # adjusted for index values, starting at 1
 ```
@@ -48,7 +75,8 @@ det_policy <- function(x) if(x <= S_star) 1 else x - S_star # adjusted for index
 
 if we believe the prior value was certainly s, we are then more conservative with anything above f(S), and less conservative with anything below f(S):
 
-```{r}
+
+```r
 s <- S_star
 a0 <- 0 # action we took 
 certain_prior <- numeric(length(m$observation[,1,1]))
@@ -58,16 +86,20 @@ df <- compute_policy(alpha, m$transition, m$observation, m$reward, certain_prior
 ```
 
 
-```{r}
+
+```r
 df %>% rowwise() %>% mutate(det = det_policy(state)) %>%
 ggplot(aes(state, state - policy)) + geom_line() + geom_point() + geom_line(aes(state, state - det)) + geom_vline(xintercept = f(s,a0))
 ```
+
+![](allen-example_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 ## Experiment 2
 
 Role of different prior beliefs on the optimal policy:
 
-```{r}
+
+```r
 low <-  compute_policy(alpha, m$transition, m$observation, m$reward, m$observation[,4,1])
 ave <-  compute_policy(alpha, m$transition, m$observation, m$reward, m$observation[,20,1])
 unif <- compute_policy(alpha, m$transition, m$observation, m$reward)
@@ -78,24 +110,29 @@ df <- dplyr::bind_rows(low, ave, unif, high, .id = "prior")
 ggplot(df, aes(state, state - policy, col = prior, pch = prior)) + 
   geom_point(alpha = 0.5, size = 3) + 
   geom_line()
-
 ```
+
+![](allen-example_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 
 ## Experiment 3: 
 
 Simulate dynamics under the policy
 
-```{r}
+
+```r
 set.seed(1234)
 sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 25, Tmax = 50, alpha = alpha)
 sim$df %>% select(-value) %>% gather(variable, state, -time) %>%
 ggplot(aes(time, state, color = variable)) + geom_line() + geom_point() 
 ```
 
+![](allen-example_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+
 Posterior is not stationary:
 
-```{r}
+
+```r
 Tmax <- length(sim$df$time)
 data.frame(time = 0:Tmax, sim$state_posterior) %>%
   gather(state, belief, -time, factor_key = TRUE) %>%
@@ -104,11 +141,14 @@ data.frame(time = 0:Tmax, sim$state_posterior) %>%
   ggplot(aes(state, belief, group = time, alpha = time)) + geom_line() 
 ```
 
+![](allen-example_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
 ## Experiment 4:
 
 Do replicate simulations avoid crashes?
 
-```{r}
+
+```r
 reps <- function(n){
   data.frame(sim = n, 
     sim_pomdp(m$transition, m$observation, m$reward, discount, 
@@ -120,4 +160,6 @@ sim_df <- purrr::map_df(1:100, reps)
 
 ggplot(sim_df, aes(time, state, group = sim)) + geom_line()
 ```
+
+![](allen-example_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
