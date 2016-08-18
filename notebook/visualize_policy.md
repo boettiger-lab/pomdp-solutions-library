@@ -27,55 +27,32 @@ library("dplyr")
 
 
 ```r
-log = ".."
-meta_from_log(data.frame(model = "ricker", K = 40), log = log)
+log = "../library"
+meta <- meta_from_log(data.frame(model = "ricker", r = 0.6, K = 30), log = log)
+meta
 ```
 
 ```
 ##                                      id load_time_sec init_time_sec
-## 7  ac32345d-5edc-4b61-933d-5937af69f56c          0.68         12.81
-## 8  3360e2b2-e04e-4536-829c-336a0ba534d9          0.62         22.87
-## 9  75ee70a6-6033-462e-bddb-a3e7245550de          0.64         28.86
-## 10 3fca83f7-86e8-44e7-8300-55875a5ec048          0.65         31.15
-## 14 d6f4fed0-8f47-486d-8af7-6d363b088cca          0.61         23.16
+## 13 1592931b-7a03-481f-bc31-f49353df24c9          0.62         22.29
 ##    run_time_sec final_precision end_condition n_states n_obs n_actions
-## 7       1524.38        0.324543          <NA>       51    51        51
-## 8       1843.07        2.570020          <NA>       51    51        51
-## 9       2106.44        7.091570          <NA>       51    51        51
-## 10      2352.25       12.725500          <NA>       51    51        51
-## 14      1926.75        2.570020          <NA>       51    51        51
+## 13      1770.79         2.04002          <NA>       51    51        51
 ##    discount                date  model   r  K    C   sigma_g   sigma_m
-## 7      0.95 2016-08-15 04:52:52 ricker 0.1 40 <NA> 0.2829182 0.2829182
-## 8      0.95 2016-08-15 05:24:08 ricker 0.6 40 <NA> 0.2829182 0.2829182
-## 9      0.95 2016-08-15 05:59:44 ricker 1.1 40 <NA> 0.2829182 0.2829182
-## 10     0.95 2016-08-15 06:39:24 ricker 1.6 40 <NA> 0.2829182 0.2829182
-## 14     0.95 2016-08-15 08:52:30 ricker 0.6 40 <NA> 0.2829182 0.2829182
+## 13     0.95 2016-08-15 08:19:54 ricker 0.6 30 <NA> 0.2829182 0.2829182
 ```
 
 ## Import a model solution from the library
 
 
 ```r
-meta <- meta_from_log(data.frame(model = "ricker", r = .1, K = 40), log = log)[1,]
-meta
-```
+i <- 1 # just use first match from the log
 
-```
-##                                     id load_time_sec init_time_sec
-## 7 ac32345d-5edc-4b61-933d-5937af69f56c          0.68         12.81
-##   run_time_sec final_precision end_condition n_states n_obs n_actions
-## 7      1524.38        0.324543          <NA>       51    51        51
-##   discount                date  model   r  K    C   sigma_g   sigma_m
-## 7     0.95 2016-08-15 04:52:52 ricker 0.1 40 <NA> 0.2829182 0.2829182
-```
+alpha <- alphas_from_log(meta, log = log)[[i]]
+f <- f_from_log(meta)[[i]]
+m <- models_from_log(meta)[[i]]
 
-```r
-alpha <- alphas_from_log(meta, log = log)[[1]]
-f <- f_from_log(meta)[[1]]
-m <- models_from_log(meta)[[1]]
-
-n_states = meta$n_states
-discount = meta$discount
+n_states = meta$n_states[[i]]
+discount = meta$discount[[i]]
 ```
 
 Find the deterministic optimal solution for this model
@@ -110,17 +87,43 @@ ggplot(aes(state, state - policy)) + geom_line() + geom_point() + geom_line(aes(
 
 ![](visualize_policy_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
+## Experiment 2
+
+Role of different prior beliefs on the optimal policy:
+
+
+```r
+low <-  compute_policy(alpha, m$transition, m$observation, m$reward, m$observation[,4,1])
+ave <-  compute_policy(alpha, m$transition, m$observation, m$reward, m$observation[,20,1])
+unif <- compute_policy(alpha, m$transition, m$observation, m$reward)
+high <- compute_policy(alpha, m$transition, m$observation, m$reward, m$observation[,35,1])
+df <- dplyr::bind_rows(low, ave, unif, high, .id = "prior")
+
+
+ggplot(df, aes(state, state - policy, col = prior, pch = prior)) + 
+  geom_point(alpha = 0.5, size = 3) + 
+  geom_line()
+```
+
+![](visualize_policy_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
+
+## Experiment 3: 
+
+Simulate dynamics under the policy
 
 
 ```r
 set.seed(1234)
-sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 5, Tmax = 20, alpha = alpha)
-
+sim <- sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 5, Tmax = 50, alpha = alpha)
 sim$df %>% select(-value) %>% gather(variable, state, -time) %>%
 ggplot(aes(time, state, color = variable)) + geom_line() + geom_point() 
 ```
 
-![](visualize_policy_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](visualize_policy_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+
+Posterior is not stationary:
+
 
 ```r
 Tmax <- length(sim$df$time)
@@ -130,4 +133,25 @@ data.frame(time = 0:Tmax, sim$state_posterior) %>%
   ggplot(aes(state, belief, group = time, alpha = time)) + geom_line() 
 ```
 
-![](visualize_policy_files/figure-html/unnamed-chunk-7-2.png)<!-- -->
+![](visualize_policy_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
+## Experiment 4:
+
+Do replicate simulations avoid crashes?
+
+
+```r
+reps <- function(n){
+  data.frame(sim = n, 
+    sim_pomdp(m$transition, m$observation, m$reward, discount, 
+              alpha = alpha, x0 = round(n_states/2), Tmax=20)$df)
+}
+
+set.seed(12345)
+sim_df <- purrr::map_df(1:100, reps)
+
+ggplot(sim_df, aes(time, state, group = sim)) + geom_line()
+```
+
+![](visualize_policy_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+
