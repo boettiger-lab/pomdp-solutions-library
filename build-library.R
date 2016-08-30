@@ -10,7 +10,7 @@ actions <- states
 obs <- states
 
 ## Create a data frame with 1 row for each parameter set for which you want to generate alpha vectors:
-Ks <- data.frame(K = 10:15, r = 1)
+Ks <- data.frame(K = 12:15, r = 1)
 rs <- data.frame(K=15, r = seq(0.6, 1.6, by =0.2))
 
 ## Bind this to a data.frame listing eahc of the fixed parameters across all runs
