@@ -5,8 +5,8 @@ library("appl")
 log_dir = "."
 
 ## choose the state/action/obs space
-states <- seq(0,1.2, length=100) # Vector of all possible states
-actions <- seq(0,.8, length=100)   # Vector of actions: harvest
+states <- seq(0,1.2, length=50) # Vector of all possible states
+actions <- seq(0,.8, length=50)   # Vector of actions: harvest
 obs <- states
 
 K = 0.9903371
