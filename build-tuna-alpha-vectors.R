@@ -16,7 +16,7 @@ sigma_g = 0.01720091
 vars <- expand.grid(r = seq(0.05, 0.3, by =0.05), sigma_m = c(0.1, 0.3, 0.6))
 
 ## Bind this to a data.frame listing eahc of the fixed parameters across all runs
-fixed <- data.frame(model = "ricker", sigma_g = sigma_g, discount = 0.99, precision = 0.001, K = K, C = NA, 
+fixed <- data.frame(model = "ricker", sigma_g = sigma_g, discount = 0.99, precision = 0.0000001, K = K, C = NA, 
                     max_state = max(states), max_obs = max(obs), max_action = max(actions), min_state = min(states), min_obs = min(obs), min_action = min(actions))
 models <- data.frame(vars, fixed)
 
