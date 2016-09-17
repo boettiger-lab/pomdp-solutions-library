@@ -1,0 +1,10 @@
+
+Install sysstat
+
+```
+sudo apt-get install -y sysstat
+```
+
+Edit `/etc/default/sysstat`, set enabled to `"true"`.
+
+Run `sar -r` to see history of memory use
