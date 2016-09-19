@@ -5,15 +5,15 @@ library("appl")
 log_dir = "."
 
 ## choose the state/action/obs space
-states <- seq(0,1.2, length=50) # Vector of all possible states
-actions <- seq(0,.8, length=50)   # Vector of actions: harvest
+states <- seq(0,1.2, length=200) # Vector of all possible states
+actions <- states  # Vector of actions: harvest
 obs <- states
 
 K = 0.9903371
 r = 0.05699246
 sigma_g = 0.01720091
 
-vars <- expand.grid(r = seq(0.05, 0.3, by =0.05), sigma_m = c(0.1, 0.3, 0.6))
+vars <- expand.grid(r = rev(seq(0.025, 0.2, by =0.025)), sigma_m = c(0.6, 0.3, 0.1))
 
 ## Bind this to a data.frame listing eahc of the fixed parameters across all runs
 fixed <- data.frame(model = "ricker", sigma_g = sigma_g, discount = 0.99, precision = 0.0000001, K = K, C = NA, 
