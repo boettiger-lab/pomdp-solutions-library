@@ -13,10 +13,13 @@ K = 0.9903371
 r = 0.05699246
 sigma_g = 0.01720091
 
+## Detect available memory (linux servers only)
+memory <- round(0.95 * as.numeric(gsub(".* (\\d+) .*", "\\1", system("cat /proc/meminfo", intern=TRUE)[1])) / 1000)
+
 vars <- expand.grid(r = rev(seq(0.025, 0.2, by =0.025)), sigma_m = c(0.6, 0.3, 0.1))
 
 ## Bind this to a data.frame listing eahc of the fixed parameters across all runs
-fixed <- data.frame(model = "ricker", sigma_g = sigma_g, discount = 0.99, precision = 0.0000001, K = K, C = NA, 
+fixed <- data.frame(model = "ricker", sigma_g = sigma_g, discount = 0.99, precision = 0.0000001, K = K, C = NA, memory = memory, improvementConstant=0.01,
                     max_state = max(states), max_obs = max(obs), max_action = max(actions), min_state = min(states), min_obs = min(obs), min_action = min(actions))
 models <- data.frame(vars, fixed)
 
@@ -27,13 +30,10 @@ models
 reward_fn <- function(x,h) pmin(x,h)
 
 ### RUN ### 
-
-## Detect available memory (linux servers only)
-memory <- round(0.95 * as.numeric(gsub(".* (\\d+) .*", "\\1", system("cat /proc/meminfo", intern=TRUE)[1])) / 1000)
-
+i = 1
 
 ## Compute alphas for the above examples
-for(i in 1:dim(models)[1]) {
+#for(i in 1:dim(models)[1]) {
 
 ## Select the model
   f <- switch(models[i, "model"], 
@@ -46,14 +46,18 @@ for(i in 1:dim(models)[1]) {
                           sigma_g = models[i, "sigma_g"], sigma_m  = models[i, "sigma_m"])
 
 ## record data for the log
-  log_data <- data.frame(model = models[i, "model"], r = models[i, "r"], K  = models[i, "K"], 
-                         C = models[i, "C"], sigma_g = models[i, "sigma_g"], sigma_m = models[i, "sigma_m"],
-                         memory = memory)
+  log_data <- models[i,]
   
 ## run sarsop
   alpha <- sarsop(m$transition, m$observation, m$reward, 
                     discount = models[i, "discount"], 
-                    precision = models[i, "precision"], memory = memory,
-                    log_dir = log_dir, log_data = log_data)
+                    precision = models[i, "precision"], 
+                    memory = models[i, "memory"],
+                    improvementConstant = models[i,"improvementConstant"],
+                    log_dir = log_dir, 
+                    log_data = log_data)
 
-}
+#}  
+  
+  ## 34b4a892-3e8f-4255-9516-210557de93f8,29.95,16764.56,16869.2,0.698911,NA,200,200,200,0.99,2016-09-22 02:00:33,0.2,0.6,ricker,0.01720091,0.99,1e-07,0.9903371,NA,117589,0.01,1.2,1.2,1.2,0,0,0
+  
