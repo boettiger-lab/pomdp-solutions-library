@@ -30,10 +30,9 @@ models
 reward_fn <- function(x,h) pmin(x,h)
 
 ### RUN ### 
-i = 1
 
 ## Compute alphas for the above examples
-#for(i in 1:dim(models)[1]) {
+for(i in 1:dim(models)[1]) {
 
 ## Select the model
   f <- switch(models[i, "model"], 
@@ -57,7 +56,4 @@ i = 1
                     log_dir = log_dir, 
                     log_data = log_data)
 
-#}  
-  
-  ## 34b4a892-3e8f-4255-9516-210557de93f8,29.95,16764.56,16869.2,0.698911,NA,200,200,200,0.99,2016-09-22 02:00:33,0.2,0.6,ricker,0.01720091,0.99,1e-07,0.9903371,NA,117589,0.01,1.2,1.2,1.2,0,0,0
-  
+}
