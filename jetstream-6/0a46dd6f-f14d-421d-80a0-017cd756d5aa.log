@@ -1,0 +1,26 @@
+
+Loading the model ...
+  input file   : /tmp/RtmptJqC9W/inputa1c1c2ff1e5.pomdpx
+  loading time : 12.77s 
+
+SARSOP initializing ...
+  initialization time : 4889.34s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 4889.34 0       0        1.68661    3.50635    1.81974     150      1        
+ 4894.37 1       59       2.66626    3.49651    0.830256    47       31       
+ 4922.12 4       107      2.95032    3.49337    0.543045    78       52       
+ 5001.13 7       157      2.99718    3.49329    0.496103    108      74       
+Memory limit reached, trying to write out policy
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 5041.61 8       173      3.00849    3.49325    0.484759    118      82       
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : /tmp/RtmptJqC9W/outputa1caae348.policyx
+
