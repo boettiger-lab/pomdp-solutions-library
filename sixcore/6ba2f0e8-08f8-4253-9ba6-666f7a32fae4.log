@@ -1,0 +1,217 @@
+
+Loading the model ...
+  input file   : /tmp/RtmpFPKHCo/input14c361190013.pomdpx
+  loading time : 3.59s 
+
+SARSOP initializing ...
+  initialization time : 850.56s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 850.56  0       0        1.69956    2.98465    1.28509     100      1        
+ 857.14  3       50       2.25121    2.97015    0.718939    57       26       
+ 872.67  6       100      2.30888    2.97002    0.661134    60       51       
+ 886.8   9       153      2.42973    2.96985    0.540113    56       67       
+ 906.34  12      200      2.48224    2.96979    0.487551    40       87       
+ 922.98  15      250      2.56254    2.96978    0.407244    36       104      
+ 934.25  18      303      2.59364    2.96978    0.376137    22       116      
+ 946.7   21      353      2.64381    2.96978    0.325968    28       129      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_23_960.74.policy
+Intermediate policy written(interval: 100)
+ 960.74  23      400      2.6628     2.96978    0.306973    22       145      
+ 971.59  26      450      2.70649    2.96978    0.263283    32       159      
+ 994.86  28      500      2.71602    2.96977    0.253746    24       179      
+ 1002.33 32      551      2.74064    2.96977    0.229131    22       186      
+ 1020.72 35      603      2.75362    2.96977    0.216151    20       199      
+ 1038.8  37      651      2.76933    2.96977    0.200433    20       214      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_40_1061.36.policy
+Intermediate policy written(interval: 100)
+ 1061.36 40      713      2.78088    2.96977    0.188885    22       230      
+ 1077.96 42      751      2.78524    2.96977    0.184526    21       242      
+ 1099.38 45      801      2.80095    2.96977    0.168815    27       256      
+ 1124.67 47      850      2.8044     2.96977    0.165369    28       273      
+ 1148.56 50      901      2.80885    2.96977    0.160917    18       286      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_53_1170.07.policy
+Intermediate policy written(interval: 100)
+ 1170.07 53      953      2.81825    2.96977    0.151518    21       299      
+ 1182.93 56      1000     2.82109    2.96976    0.148671    29       307      
+ 1225.67 59      1050     2.82213    2.96976    0.147629    27       327      
+ 1251.22 61      1101     2.82592    2.96976    0.143836    21       338      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_63_1281.87.policy
+Intermediate policy written(interval: 100)
+ 1281.87 63      1150     2.83128    2.96975    0.138471    41       353      
+ 1314.2  66      1201     2.83375    2.96975    0.136       22       367      
+ 1354.56 69      1250     2.83831    2.96975    0.131442    33       385      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_71_1394.26.policy
+Intermediate policy written(interval: 100)
+ 1394.26 71      1311     2.84172    2.96975    0.128035    33       401      
+ 1435.78 74      1361     2.84363    2.96975    0.126121    36       414      
+ 1486.81 76      1405     2.84518    2.96975    0.124571    35       429      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_78_1524.98.policy
+Intermediate policy written(interval: 100)
+ 1524.98 78      1450     2.85262    2.96975    0.117133    41       442      
+ 1567.58 81      1509     2.85525    2.96975    0.114501    34       458      
+ 1601.04 83      1550     2.85651    2.96975    0.113242    38       469      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_86_1662.27.policy
+Intermediate policy written(interval: 100)
+ 1662.27 86      1611     2.85765    2.96975    0.112101    37       486      
+ 1736.12 87      1650     2.85786    2.96975    0.111887    35       504      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_90_1802.75.policy
+Intermediate policy written(interval: 100)
+ 1802.75 90      1707     2.85851    2.96974    0.111231    45       518      
+ 1879    92      1755     2.85992    2.96974    0.109824    45       534      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_94_1953.18.policy
+Intermediate policy written(interval: 100)
+ 1953.18 94      1800     2.86092    2.96974    0.108826    47       549      
+ 2019.71 97      1850     2.86138    2.96974    0.108363    46       563      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_100_2094.58.policy
+Intermediate policy written(interval: 100)
+ 2094.58 100     1905     2.8624     2.96974    0.107343    57       577      
+ 2168.21 102     1950     2.8628     2.96974    0.106944    56       590      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_105_2277.43.policy
+Intermediate policy written(interval: 100)
+ 2277.43 105     2007     2.86287    2.96973    0.106857    62       607      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_107_2387.83.policy
+Intermediate policy written(interval: 100)
+ 2387.83 107     2053     2.86403    2.96973    0.105697    58       623      
+ 2425.52 110     2100     2.8649     2.96973    0.104833    62       634      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_112_2516.13.policy
+Intermediate policy written(interval: 100)
+ 2516.13 112     2150     2.86501    2.96973    0.104716    79       650      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_114_2635.88.policy
+Intermediate policy written(interval: 100)
+ 2635.88 114     2200     2.86504    2.96973    0.104693    67       669      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_117_2779.87.policy
+Intermediate policy written(interval: 100)
+ 2779.87 117     2259     2.86508    2.96973    0.10464     69       688      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_119_2917.53.policy
+Intermediate policy written(interval: 100)
+ 2917.53 119     2305     2.86523    2.96973    0.104498    70       704      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_121_3066.49.policy
+Intermediate policy written(interval: 100)
+ 3066.49 121     2350     2.86536    2.96973    0.104362    74       720      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_123_3269.policy
+Intermediate policy written(interval: 100)
+ 3269    123     2400     2.86583    2.96973    0.103896    76       740      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_126_3428.08.policy
+Intermediate policy written(interval: 100)
+ 3428.08 126     2457     2.86607    2.96973    0.103654    69       755      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_128_3601.66.policy
+Intermediate policy written(interval: 100)
+ 3601.66 128     2501     2.8663     2.96973    0.103427    73       770      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_130_3836.03.policy
+Intermediate policy written(interval: 100)
+ 3836.03 131     2550     2.86641    2.96972    0.103311    79       789      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_133_4024.58.policy
+Intermediate policy written(interval: 100)
+ 4024.58 133     2605     2.86646    2.96972    0.103261    86       805      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_135_4225.43.policy
+Intermediate policy written(interval: 100)
+ 4225.43 135     2650     2.86676    2.96972    0.10297     84       821      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_137_4335.18.policy
+Intermediate policy written(interval: 100)
+ 4335.18 137     2700     2.8671     2.96972    0.102624    75       841      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_139_4461.89.policy
+Intermediate policy written(interval: 100)
+ 4461.89 139     2750     2.8675     2.96972    0.102223    86       860      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_142_4578.31.policy
+Intermediate policy written(interval: 100)
+ 4578.31 142     2809     2.86958    2.96972    0.100138    72       876      
+ 4622.12 144     2850     2.87052    2.96972    0.0992045   72       888      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_147_4739.45.policy
+Intermediate policy written(interval: 100)
+ 4739.45 147     2909     2.87096    2.96972    0.0987632   64       906      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_149_4847.56.policy
+Intermediate policy written(interval: 100)
+ 4847.56 149     2950     2.87121    2.96972    0.0985142   76       919      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_151_5021.98.policy
+Intermediate policy written(interval: 100)
+ 5021.98 151     3000     2.87142    2.96972    0.0983036   62       938      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_153_5158.98.policy
+Intermediate policy written(interval: 100)
+ 5158.98 154     3050     2.87161    2.96972    0.0981081   54       952      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_156_5347.56.policy
+Intermediate policy written(interval: 100)
+ 5347.56 156     3109     2.87185    2.96972    0.097875    56       970      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_158_5503.4.policy
+Intermediate policy written(interval: 100)
+ 5503.4  158     3153     2.87191    2.96972    0.0978096   45       984      
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_160_5712.7.policy
+Intermediate policy written(interval: 100)
+ 5712.7  160     3203     2.87194    2.96972    0.0977842   56       1001     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_162_5962.77.policy
+Intermediate policy written(interval: 100)
+ 5962.77 162     3255     2.87197    2.96972    0.0977512   59       1019     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_164_6171.51.policy
+Intermediate policy written(interval: 100)
+ 6171.51 164     3300     2.87202    2.96972    0.0976991   61       1033     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_166_6438.41.policy
+Intermediate policy written(interval: 100)
+ 6438.41 166     3350     2.87203    2.96972    0.0976918   66       1050     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_168_6707.68.policy
+Intermediate policy written(interval: 100)
+ 6707.68 168     3400     2.87205    2.96972    0.0976687   74       1067     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_170_7026.41.policy
+Intermediate policy written(interval: 100)
+ 7026.41 170     3450     2.87206    2.96972    0.0976637   69       1086     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_172_7390.99.policy
+Intermediate policy written(interval: 100)
+ 7390.99 172     3500     2.87208    2.96972    0.0976452   76       1105     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_175_7732.74.policy
+Intermediate policy written(interval: 100)
+ 7732.74 175     3561     2.87246    2.96971    0.0972531   69       1120     
+ 7813.18 177     3601     2.87266    2.96971    0.0970464   74       1132     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_179_7946.17.policy
+Intermediate policy written(interval: 100)
+ 7946.17 179     3650     2.87283    2.96971    0.0968838   73       1148     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_181_8125.11.policy
+Intermediate policy written(interval: 100)
+ 8125.11 181     3700     2.87296    2.96971    0.0967472   65       1167     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_183_8324.05.policy
+Intermediate policy written(interval: 100)
+ 8324.05 183     3750     2.87314    2.96971    0.0965682   72       1185     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_185_8536.46.policy
+Intermediate policy written(interval: 100)
+ 8536.46 185     3800     2.87326    2.96971    0.0964499   62       1201     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_188_8760.68.policy
+Intermediate policy written(interval: 100)
+ 8760.68 188     3861     2.87339    2.96971    0.0963195   72       1217     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_190_8998.69.policy
+Intermediate policy written(interval: 100)
+ 8998.69 190     3909     2.87341    2.96971    0.0963017   69       1233     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_192_9193.8.policy
+Intermediate policy written(interval: 100)
+ 9193.8  192     3950     2.87342    2.96971    0.0962941   61       1246     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_194_9474.58.policy
+Intermediate policy written(interval: 100)
+ 9474.58 194     4000     2.87383    2.96971    0.0958755   52       1262     
+ 9550.35 197     4050     2.8741     2.96971    0.095607    58       1279     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_199_9668.42.policy
+Intermediate policy written(interval: 100)
+ 9668.42 200     4100     2.87423    2.96971    0.0954761   63       1295     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_202_9787.74.policy
+Intermediate policy written(interval: 100)
+ 9787.74 202     4151     2.87447    2.96971    0.0952444   63       1307     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_204_9962.22.policy
+Intermediate policy written(interval: 100)
+ 9962.22 204     4200     2.87467    2.96971    0.0950451   71       1323     
+Writing policy file: /tmp/RtmpFPKHCo/output14c35569ea82_206_10200.3.policy
+Intermediate policy written(interval: 100)
+ 10200.3 206     4250     2.87482    2.96971    0.0948891   80       1342     
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 10000.000000s
+  Actual Time : 10200.340000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 10200.3 206     4250     2.87482    2.96971    0.0948891   80       1342     
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : /tmp/RtmpFPKHCo/output14c35569ea82.policyx
+
