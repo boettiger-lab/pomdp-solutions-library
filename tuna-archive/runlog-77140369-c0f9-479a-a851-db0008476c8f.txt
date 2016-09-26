@@ -1,0 +1,47 @@
+
+Loading the model ...
+  input file   : /tmp/Rtmp2TPyzg/input854603f4ff2.pomdp
+  loading time : 4.45s 
+
+SARSOP initializing ...
+  initialization time : 610.12s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 610.12  0       0        0.486734   0.776963   0.290229    100      1        
+ 630.23  3       50       0.630693   0.770377   0.139684    51       24       
+ 654.62  4       100      0.636485   0.770348   0.133863    98       53       
+ 691.69  6       163      0.654809   0.77027    0.115461    120      77       
+Writing policy file: /tmp/Rtmp2TPyzg/output8544d4f1d8b_7_732.35.policy
+Intermediate policy written(interval: 100)
+ 732.35  7       207      0.660501   0.770251   0.10975     93       98       
+ 782.11  8       253      0.664338   0.770249   0.10591     50       120      
+Writing policy file: /tmp/Rtmp2TPyzg/output8544d4f1d8b_9_847.2.policy
+Intermediate policy written(interval: 100)
+ 847.2   9       300      0.67231    0.770235   0.0979258   72       147      
+ 911.66  10      350      0.678838   0.770178   0.0913405   63       168      
+Writing policy file: /tmp/Rtmp2TPyzg/output8544d4f1d8b_11_978.51.policy
+Intermediate policy written(interval: 100)
+ 978.51  11      400      0.681386   0.770167   0.0887808   74       193      
+ 1049.83 12      453      0.685274   0.770154   0.0848797   52       216      
+Writing policy file: /tmp/Rtmp2TPyzg/output8544d4f1d8b_13_1110.47.policy
+Intermediate policy written(interval: 100)
+ 1110.47 13      513      0.687279   0.770145   0.082866    53       244      
+ 1179.59 14      573      0.691216   0.770122   0.0789061   51       272      
+Writing policy file: /tmp/Rtmp2TPyzg/output8544d4f1d8b_14_1249.51.policy
+Intermediate policy written(interval: 100)
+ 1249.51 14      600      0.691216   0.770122   0.0789061   57       298      
+ 1296.1  15      650      0.693389   0.770103   0.0767141   75       315      
+ 1347.53 16      700      0.698704   0.770076   0.0713719   61       333      
+Memory limit reached, trying to write out policy
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1382.17 16      713      0.698704   0.770076   0.0713719   74       345      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : /tmp/Rtmp2TPyzg/output8544d4f1d8b.policy
+
