@@ -1,0 +1,151 @@
+
+Loading the model ...
+  input file   : /tmp/RtmppstGhN/inputf9654456f65.pomdpx
+  loading time : 16.54s 
+
+SARSOP initializing ...
+  initialization time : 4265.03s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 4265.03 0       0        0.903437   1.65231    0.748875    150      1        
+ 4334.69 4       50       1.21147    1.64491    0.433441    68       26       
+ 4345.22 5       111      1.40264    1.64486    0.242225    94       53       
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_6_4448.46.policy
+Intermediate policy written(interval: 100)
+ 4448.46 6       167      1.40973    1.64485    0.235112    133      80       
+ 4544.51 7       203      1.41153    1.64483    0.233303    136      97       
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_9_4696.43.policy
+Intermediate policy written(interval: 100)
+ 4696.43 9       251      1.41307    1.64481    0.231745    100      119      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_11_4880.67.policy
+Intermediate policy written(interval: 100)
+ 4880.67 11      300      1.41637    1.64478    0.228414    85       143      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_13_5071.33.policy
+Intermediate policy written(interval: 100)
+ 5071.33 13      350      1.44067    1.64477    0.204095    66       164      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_16_5264.98.policy
+Intermediate policy written(interval: 100)
+ 5264.98 16      400      1.45199    1.64474    0.19275     64       183      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_19_5489.18.policy
+Intermediate policy written(interval: 100)
+ 5489.18 20      450      1.46973    1.64474    0.175008    67       204      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_22_5692.75.policy
+Intermediate policy written(interval: 100)
+ 5692.75 23      500      1.47927    1.64473    0.165465    59       221      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_26_5816.66.policy
+Intermediate policy written(interval: 100)
+ 5816.66 26      551      1.49217    1.64473    0.152565    57       231      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_29_5972.64.policy
+Intermediate policy written(interval: 100)
+ 5972.64 29      600      1.49992    1.64473    0.144817    59       245      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_33_6088.57.policy
+Intermediate policy written(interval: 100)
+ 6088.57 33      651      1.50844    1.64473    0.136295    57       255      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_37_6301.17.policy
+Intermediate policy written(interval: 100)
+ 6301.17 37      707      1.51716    1.64473    0.127568    58       273      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_39_6454.07.policy
+Intermediate policy written(interval: 100)
+ 6454.07 39      750      1.5268     1.64473    0.117931    55       286      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_42_6567.45.policy
+Intermediate policy written(interval: 100)
+ 6567.45 42      800      1.53166    1.64473    0.113076    57       296      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_45_6743.77.policy
+Intermediate policy written(interval: 100)
+ 6743.77 45      850      1.53381    1.64473    0.110921    55       308      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_48_6859.39.policy
+Intermediate policy written(interval: 100)
+ 6859.39 48      900      1.54307    1.64473    0.101662    54       319      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_51_7022.64.policy
+Intermediate policy written(interval: 100)
+ 7022.64 51      950      1.54506    1.64473    0.09967     54       330      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_54_7314.16.policy
+Intermediate policy written(interval: 100)
+ 7314.16 54      1000     1.54972    1.64473    0.0950133   53       345      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_57_7506.78.policy
+Intermediate policy written(interval: 100)
+ 7506.78 57      1053     1.55363    1.64473    0.0910975   51       360      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_59_7705.69.policy
+Intermediate policy written(interval: 100)
+ 7705.69 60      1100     1.55991    1.64473    0.084827    65       376      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_62_7883.39.policy
+Intermediate policy written(interval: 100)
+ 7883.39 62      1150     1.56326    1.64473    0.0814691   57       389      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_64_8277.25.policy
+Intermediate policy written(interval: 100)
+ 8277.25 65      1200     1.56458    1.64473    0.0801483   48       407      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_67_8656.05.policy
+Intermediate policy written(interval: 100)
+ 8656.05 67      1255     1.56824    1.64473    0.0764969   40       420      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_70_8989.48.policy
+Intermediate policy written(interval: 100)
+ 8989.48 70      1305     1.57115    1.64473    0.0735814   37       432      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_73_9152.65.policy
+Intermediate policy written(interval: 100)
+ 9152.65 73      1353     1.57417    1.64473    0.0705609   36       441      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_76_9413.15.policy
+Intermediate policy written(interval: 100)
+ 9413.15 76      1409     1.57501    1.64473    0.0697215   34       455      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_79_9775.45.policy
+Intermediate policy written(interval: 100)
+ 9775.45 79      1457     1.57581    1.64473    0.0689196   35       467      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_81_10311.3.policy
+Intermediate policy written(interval: 100)
+ 10311.3 81      1500     1.57648    1.64473    0.0682485   43       481      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_84_10874.6.policy
+Intermediate policy written(interval: 100)
+ 10874.6 84      1550     1.57825    1.64473    0.0664841   37       493      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_87_11764.9.policy
+Intermediate policy written(interval: 100)
+ 11764.9 87      1605     1.57929    1.64473    0.0654398   42       508      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_89_12273.1.policy
+Intermediate policy written(interval: 100)
+ 12273.1 89      1650     1.58147    1.64473    0.0632633   32       522      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_91_12765.policy
+Intermediate policy written(interval: 100)
+ 12765   91      1700     1.5824     1.64473    0.0623324   36       538      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_94_12932.4.policy
+Intermediate policy written(interval: 100)
+ 12932.4 94      1750     1.58484    1.64473    0.0598874   45       546      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_96_13212.9.policy
+Intermediate policy written(interval: 100)
+ 13212.9 96      1800     1.5852     1.64473    0.0595349   44       561      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_98_13777.policy
+Intermediate policy written(interval: 100)
+ 13777   98      1850     1.58553    1.64473    0.0592031   38       579      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_101_14549.policy
+Intermediate policy written(interval: 100)
+ 14549   101     1903     1.58632    1.64473    0.0584081   42       594      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_103_15547.6.policy
+Intermediate policy written(interval: 100)
+ 15547.6 103     1950     1.58663    1.64473    0.0580959   45       610      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_106_16331.policy
+Intermediate policy written(interval: 100)
+ 16331   106     2000     1.58749    1.64473    0.0572448   51       621      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_109_17454.3.policy
+Intermediate policy written(interval: 100)
+ 17454.3 109     2051     1.58811    1.64473    0.0566219   51       636      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_111_18655.1.policy
+Intermediate policy written(interval: 100)
+ 18655.1 111     2100     1.58845    1.64473    0.0562824   47       651      
+Writing policy file: /tmp/RtmppstGhN/outputf966b2ecccd_113_20140.3.policy
+Intermediate policy written(interval: 100)
+ 20140.3 113     2150     1.589      1.64473    0.0557327   55       669      
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 20000.000000s
+  Actual Time : 20140.330000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 20140.3 113     2150     1.589      1.64473    0.0557327   55       669      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : /tmp/RtmppstGhN/outputf966b2ecccd.policyx
+
