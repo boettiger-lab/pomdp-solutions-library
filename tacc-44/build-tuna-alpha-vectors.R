@@ -6,7 +6,7 @@ mc.cores = 4
 ### SETUP ###
 log_dir = "."
 p <- 2
-states <- seq(0, 1.2^(1/p), len=15)^p # Vector of all possible states
+states <- seq(0, 1.2^(1/p), len=150)^p # Vector of all possible states
 actions <- states  # Vector of actions: harvest
 obs <- states
 
@@ -51,8 +51,7 @@ alphas <- sarsop_plus(models,
                       discount = pars[1, "discount"], 
                       precision = pars[1, "precision"], 
                       #memory = pars[1, "memory"],
-                      #timeout = pars[1, "timeout"],
-                      timeout = 1,
+                      timeout = pars[1, "timeout"],
                       timeInterval = pars[1, "timeInterval"],
                       log_dir = log_dir, 
                       log_data = pars,
