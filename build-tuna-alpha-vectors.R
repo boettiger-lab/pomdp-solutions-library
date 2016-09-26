@@ -5,8 +5,8 @@ mc.cores = 1
 
 ### SETUP ###
 log_dir = "."
-p <- 2
-states <- seq(0, 1.2^(1/p), len=150)^p # Vector of all possible states
+p <- 1.5
+states <- seq(0, 1.2^(1/p), len=100)^p # Vector of all possible states
 actions <- states  # Vector of actions: harvest
 obs <- states
 
@@ -19,6 +19,8 @@ vars <- expand.grid(r = rev(seq(0.025, 0.2, by =0.025)), sigma_m = c(0.1, 0.3, 0
 
 ## Detect available memory (linux servers only)
 memory <- round(0.95 * as.numeric(gsub(".* (\\d+) .*", "\\1", system("cat /proc/meminfo", intern=TRUE)[1])) / 1000)
+memory <- "NULL"
+
 ## Bind this to a data.frame listing eahc of the fixed parameters across all runs
 fixed <- data.frame( K = K, C = NA, sigma_g = sigma_g, discount = 0.99, model = "ricker", 
                      precision = 0.0000001, memory = memory, timeout = 10000, timeInterval = 100,
@@ -50,7 +52,7 @@ models <- lapply(1:dim(pars)[1], function(i){
 alphas <- sarsop_plus(models, 
                       discount = pars[1, "discount"], 
                       precision = pars[1, "precision"], 
-                      memory = pars[1, "memory"],
+                      #memory = pars[1, "memory"],
                       timeout = pars[1, "timeout"],
                       timeInterval = pars[1, "timeInterval"],
                       log_dir = log_dir, 
