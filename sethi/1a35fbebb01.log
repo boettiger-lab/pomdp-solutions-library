@@ -1,0 +1,43 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/1a35fbebb01.pomdpx
+  loading time : 5.14s 
+
+SARSOP initializing ...
+  initialization time : 1301.50s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1301.5  0       0        2.69616    5.96054    3.26438     100      1        
+ 1391.78 2       50       4.33095    5.85626    1.52531     17       30       
+ 1527.88 4       100      4.66005    5.85219    1.19214     21       52       
+ 1764.73 6       150      4.81104    5.84937    1.03833     14       73       
+ 2104.9  8       200      4.90702    5.84699    0.939974    12       92       
+Writing policy file: ./1a35fbebb01_10_2572.72.policy
+Intermediate policy written(interval: 1000)
+ 2572.72 10      250      4.98403    5.84236    0.858325    15       111      
+ 3329.49 12      303      5.0209     5.83806    0.817152    14       134      
+Writing policy file: ./1a35fbebb01_14_4298.8.policy
+Intermediate policy written(interval: 1000)
+ 4298.8  14      359      5.06839    5.83208    0.763689    11       159      
+Writing policy file: ./1a35fbebb01_16_5338.12.policy
+Intermediate policy written(interval: 1000)
+ 5338.12 16      413      5.10644    5.82829    0.72185     13       181      
+Writing policy file: ./1a35fbebb01_17_6450.66.policy
+Intermediate policy written(interval: 1000)
+ 6450.66 17      450      5.11966    5.82763    0.707975    14       201      
+Writing policy file: ./1a35fbebb01_19_7530.9.policy
+Intermediate policy written(interval: 1000)
+ 7530.9  19      500      5.13738    5.82723    0.689856    25       219      
+Writing policy file: ./1a35fbebb01_21_8849.06.policy
+Intermediate policy written(interval: 1000)
+ 8849.06 21      550      5.15865    5.8223     0.663649    17       238      
+Writing policy file: ./1a35fbebb01_23_10348.9.policy
+Intermediate policy written(interval: 1000)
+ 10348.9 23      603      5.16985    5.81947    0.64962     13       257      
+Writing policy file: ./1a35fbebb01_25_12147.8.policy
+Intermediate policy written(interval: 1000)
+ 12147.8 25      657      5.18796    5.81778    0.629818    15       279      
+Writing policy file: ./1a35fbebb01_27_14053.1.policy
+Intermediate policy written(interval: 1000)

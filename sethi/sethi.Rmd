@@ -1,0 +1,106 @@
+---
+output:
+  html_document: 
+    keep_md: yes
+    variant: markdown_github
+---  
+
+```{r setup, include=FALSE}
+library("appl")
+mc.cores = 18
+
+### SETUP ###
+log_dir = "."
+states <- seq(0, 1, len=100)
+actions <- states  # Vector of actions: harvest
+obs <- states
+
+K = 1
+discount = 0.95
+
+vars <- expand.grid(r = c(0.25,1, by=0.25), sigma_m = c(0.2, 0.4, 0.6), sigma_g = c(0.2, 0.4, 0.6))
+
+## Detect available memory (linux servers only)
+
+## Bind this to a data.frame listing eahc of the fixed parameters across all runs
+fixed <- data.frame( K = K,
+                     C = NA,
+                     sigma_g = sigma_g,
+                     model = "ricker",
+                     precision = 0.0000001,
+                     timeout = 20000,
+                     timeInterval = 1000,
+                     max_state = max(states), max_obs = max(obs), max_action = max(actions), 
+                     min_state = min(states), min_obs = min(obs), min_action = min(actions))
+pars <- data.frame(vars, fixed)
+
+## Usual assumption at the moment for reward fn
+reward_fn <- function(x,h) pmin(x,h)
+
+## Compute alphas for the above examples
+models <- lapply(1:dim(pars)[1], function(i){
+  
+  ## Select the model
+  f <- switch(pars[i, "model"], 
+              allen = appl:::allen(pars[i, "r"], pars[i, "K"], pars[i, "C"]),
+              ricker = appl:::ricker(pars[i, "r"], pars[i, "K"])
+  )
+  ## Compute matrices
+  fisheries_matrices(states, actions, obs, 
+                     reward_fn, f = f, 
+                     sigma_g = pars[i, "sigma_g"], 
+                     sigma_m  = pars[i, "sigma_m"])
+})
+## run sarsop
+
+
+```
+
+## run sarsop
+
+```{r}  
+library("parallel")
+alphas <- mclapply(models, function(m) 
+         sarsop(m$transition,
+                m$observation,
+                m$reward,
+                discount = discount,
+                precision = pars[1, "precision"],
+                timeout = pars[1, "timeout"],
+                timeInterval = pars[1, "timeInterval"],
+                log_dir = log_dir,
+                log_data = pars),
+         mc.cores = mc.cores)
+```
+
+## pomdp policy
+
+```{r}
+i = 1
+m <- models[[i]]
+alpha <- alphas[[i]]
+df <- compute_policy(alpha, m$transition, m$observation, m$reward)
+```
+
+## Det policy
+
+```{r}
+f = appl:::ricker(pars[i, "r"], pars[i, "K"])
+
+S_star <- optimize(function(x) x / discount - f(x,0), c(min(states),max(states)))$minimum
+h <- pmax(states - S_star,  0)
+policy <- sapply(h, function(h) which.min((abs(h - actions))))
+det <- data.frame(policy, value = 1:length(states), state = 1:length(states))
+```
+
+## plot policies
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+bind_rows(pomdp = df, det = det, .id = "model") %>%
+ggplot(aes(states[state], states[state] - actions[policy], col = model)) + geom_line() + geom_point()
+
+```
+

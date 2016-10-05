@@ -1,0 +1,61 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/1af5fbebb01.pomdpx
+  loading time : 4.91s 
+
+SARSOP initializing ...
+  initialization time : 1751.66s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1751.66 0       0        2.0513     4.87211    2.82081     100      1        
+ 1859.66 2       50       2.85878    4.76091    1.90213     23       25       
+ 2062.34 4       101      3.12961    4.75548    1.62587     12       46       
+ 2518.73 6       153      3.29849    4.74168    1.44319     8        70       
+Writing policy file: ./1af5fbebb01_8_3195.94.policy
+Intermediate policy written(interval: 1000)
+ 3195.94 8       207      3.43436    4.73272    1.29836     10       91       
+Writing policy file: ./1af5fbebb01_10_4365.13.policy
+Intermediate policy written(interval: 1000)
+ 4365.13 10      261      3.54133    4.72091    1.17958     14       115      
+Writing policy file: ./1af5fbebb01_11_5717.3.policy
+Intermediate policy written(interval: 1000)
+ 5717.3  11      300      3.57176    4.71502    1.14327     15       137      
+Writing policy file: ./1af5fbebb01_13_7038.92.policy
+Intermediate policy written(interval: 1000)
+ 7038.92 13      350      3.64319    4.70727    1.06408     8        155      
+Writing policy file: ./1af5fbebb01_15_8658.46.policy
+Intermediate policy written(interval: 1000)
+ 8658.46 15      400      3.68395    4.69463    1.01068     10       174      
+Writing policy file: ./1af5fbebb01_17_10945.3.policy
+Intermediate policy written(interval: 1000)
+ 10945.3 17      455      3.72753    4.69329    0.965762    12       198      
+Writing policy file: ./1af5fbebb01_19_13299.policy
+Intermediate policy written(interval: 1000)
+ 13299   19      511      3.76351    4.69071    0.927195    9        221      
+Writing policy file: ./1af5fbebb01_20_16029.policy
+Intermediate policy written(interval: 1000)
+ 16029   20      550      3.77959    4.69026    0.910668    9        244      
+Writing policy file: ./1af5fbebb01_22_18658.3.policy
+Intermediate policy written(interval: 1000)
+ 18658.3 22      600      3.80788    4.68517    0.877297    10       261      
+Writing policy file: ./1af5fbebb01_24_21678.8.policy
+Intermediate policy written(interval: 1000)
+ 21678.8 24      651      3.83186    4.684      0.85214     13       279      
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 20000.000000s
+  Actual Time : 21678.830000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 21678.8 24      651      3.83186    4.684      0.85214     13       279      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./1af5fbebb01.policyx
+

@@ -1,0 +1,72 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/1a761cedb3f.pomdpx
+  loading time : 5.59s 
+
+SARSOP initializing ...
+  initialization time : 1781.60s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1781.6  0       0        0.58774    1.57703    0.989288    100      1        
+ 1888.97 2       55       0.770805   1.51023    0.73943     9        27       
+ 2089.65 4       109      0.845138   1.49965    0.654509    6        46       
+ 2418.36 5       150      0.877917   1.49656    0.61864     6        68       
+ 2771.53 7       200      0.942913   1.49258    0.549665    9        85       
+Writing policy file: ./1a761cedb3f_9_3198.33.policy
+Intermediate policy written(interval: 1000)
+ 3198.33 9       250      0.997338   1.4901     0.492766    13       102      
+ 3612.03 11      305      1.04117    1.48765    0.446483    9        113      
+Writing policy file: ./1a761cedb3f_13_4482.9.policy
+Intermediate policy written(interval: 1000)
+ 4482.9  13      361      1.07582    1.48646    0.410634    12       134      
+ 5175.51 14      400      1.09054    1.48605    0.39551     7        154      
+Writing policy file: ./1a761cedb3f_16_5699.4.policy
+Intermediate policy written(interval: 1000)
+ 5699.4  16      450      1.11104    1.48305    0.372012    10       166      
+ 6205.77 18      501      1.13742    1.48218    0.344753    7        177      
+Writing policy file: ./1a761cedb3f_20_7438.5.policy
+Intermediate policy written(interval: 1000)
+ 7438.5  20      557      1.16061    1.48158    0.320976    11       202      
+Writing policy file: ./1a761cedb3f_22_8556.58.policy
+Intermediate policy written(interval: 1000)
+ 8556.58 22      613      1.17205    1.4814     0.309355    10       222      
+Writing policy file: ./1a761cedb3f_23_9585.44.policy
+Intermediate policy written(interval: 1000)
+ 9585.44 23      650      1.17689    1.48117    0.304278    10       238      
+ 10453.3 25      700      1.18474    1.48095    0.29621     8        250      
+Writing policy file: ./1a761cedb3f_27_11088.3.policy
+Intermediate policy written(interval: 1000)
+ 11088.3 27      753      1.19736    1.48056    0.283191    9        260      
+Writing policy file: ./1a761cedb3f_29_13588.7.policy
+Intermediate policy written(interval: 1000)
+ 13588.7 29      809      1.20436    1.4801     0.275748    11       283      
+Writing policy file: ./1a761cedb3f_30_15095.8.policy
+Intermediate policy written(interval: 1000)
+ 15095.8 30      850      1.20715    1.47993    0.272778    11       300      
+Writing policy file: ./1a761cedb3f_32_16242.policy
+Intermediate policy written(interval: 1000)
+ 16242   32      900      1.21203    1.47967    0.267645    10       311      
+Writing policy file: ./1a761cedb3f_34_17809.3.policy
+Intermediate policy written(interval: 1000)
+ 17809.3 34      950      1.22179    1.47947    0.257678    9        327      
+Writing policy file: ./1a761cedb3f_36_20525.8.policy
+Intermediate policy written(interval: 1000)
+ 20525.8 36      1005     1.22864    1.47927    0.250629    14       351      
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 20000.000000s
+  Actual Time : 20525.770000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 20525.8 36      1005     1.22864    1.47927    0.250629    14       351      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./1a761cedb3f.policyx
+

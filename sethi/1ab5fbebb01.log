@@ -1,0 +1,92 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/1ab5fbebb01.pomdpx
+  loading time : 4.83s 
+
+SARSOP initializing ...
+  initialization time : 1546.53s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1546.53 0       0        0.625222   1.61207    0.986849    100      1        
+ 1606.27 2       55       0.820787   1.56472    0.743929    15       24       
+ 1706.97 4       111      0.945044   1.56397    0.618926    13       45       
+ 1770.98 5       150      0.995253   1.56306    0.567808    6        57       
+ 1840.92 7       200      1.05323    1.56207    0.508847    8        68       
+ 1925.54 9       251      1.09893    1.56096    0.462031    8        80       
+ 2096.64 11      307      1.1554     1.55991    0.404515    7        100      
+ 2235.8  13      363      1.20076    1.55865    0.357894    6        114      
+ 2345.72 14      400      1.21622    1.55843    0.342207    6        123      
+ 2479.22 16      450      1.24322    1.55754    0.314312    5        133      
+Writing policy file: ./1ab5fbebb01_18_2711.15.policy
+Intermediate policy written(interval: 1000)
+ 2711.15 18      503      1.26268    1.55733    0.294656    7        146      
+ 2830.79 20      559      1.27843    1.55723    0.278806    9        153      
+ 3085.35 21      600      1.28643    1.55713    0.270697    8        166      
+ 3387.79 23      650      1.29978    1.55687    0.257088    8        179      
+Writing policy file: ./1ab5fbebb01_25_3873.49.policy
+Intermediate policy written(interval: 1000)
+ 3873.49 25      700      1.3114     1.55684    0.245447    9        194      
+ 4393.8  27      755      1.32121    1.55644    0.235225    10       208      
+Writing policy file: ./1ab5fbebb01_29_4880.36.policy
+Intermediate policy written(interval: 1000)
+ 4880.36 29      811      1.33012    1.55568    0.225561    10       221      
+ 5477.67 30      850      1.33338    1.55562    0.222247    12       234      
+ 5717.91 32      900      1.34168    1.5556     0.213916    10       240      
+Writing policy file: ./1ab5fbebb01_34_6152.52.policy
+Intermediate policy written(interval: 1000)
+ 6152.52 34      951      1.3494     1.55557    0.206174    8        251      
+ 6705.7  36      1007     1.3562     1.55545    0.19925     10       262      
+Writing policy file: ./1ab5fbebb01_38_7344.26.policy
+Intermediate policy written(interval: 1000)
+ 7344.26 38      1063     1.36211    1.5554     0.193289    11       275      
+ 8293.22 39      1100     1.36482    1.55537    0.190555    8        292      
+Writing policy file: ./1ab5fbebb01_41_9174.32.policy
+Intermediate policy written(interval: 1000)
+ 9174.32 41      1150     1.36983    1.55523    0.185408    8        307      
+ 9926.69 43      1203     1.37407    1.55517    0.1811      8        319      
+ 10101.9 45      1259     1.37965    1.55516    0.175509    9        322      
+Writing policy file: ./1ab5fbebb01_46_11034.9.policy
+Intermediate policy written(interval: 1000)
+ 11034.9 46      1300     1.3825     1.55516    0.172655    11       339      
+ 11303.9 48      1350     1.38566    1.55514    0.169478    12       344      
+ 11810.1 50      1400     1.39017    1.55504    0.164876    10       352      
+Writing policy file: ./1ab5fbebb01_52_12618.1.policy
+Intermediate policy written(interval: 1000)
+ 12618.1 52      1455     1.39345    1.55499    0.161535    11       364      
+ 13196.5 54      1513     1.4005     1.55496    0.154455    11       373      
+ 13402.9 55      1550     1.40236    1.55494    0.152583    12       376      
+Writing policy file: ./1ab5fbebb01_57_14147.9.policy
+Intermediate policy written(interval: 1000)
+ 14147.9 57      1600     1.40577    1.55494    0.149167    12       387      
+ 14361.6 59      1653     1.40815    1.55489    0.146743    10       390      
+Writing policy file: ./1ab5fbebb01_61_15525.9.policy
+Intermediate policy written(interval: 1000)
+ 15525.9 61      1709     1.41003    1.55476    0.144729    17       404      
+Writing policy file: ./1ab5fbebb01_62_16951.7.policy
+Intermediate policy written(interval: 1000)
+ 16951.7 62      1750     1.411      1.55473    0.143736    14       418      
+ 17457.2 64      1800     1.4158     1.55472    0.138925    13       425      
+Writing policy file: ./1ab5fbebb01_66_18925.7.policy
+Intermediate policy written(interval: 1000)
+ 18925.7 66      1851     1.41856    1.55467    0.136106    15       442      
+Writing policy file: ./1ab5fbebb01_68_20690.8.policy
+Intermediate policy written(interval: 1000)
+ 20690.8 68      1907     1.42053    1.55464    0.134105    14       459      
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 20000.000000s
+  Actual Time : 20690.820000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 20690.8 68      1907     1.42053    1.55464    0.134105    14       459      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./1ab5fbebb01.policyx
+
