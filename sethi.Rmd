@@ -26,7 +26,6 @@ vars <- expand.grid(r = c(0.5, 1), sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.5),
 ## Bind this to a data.frame listing eahc of the fixed parameters across all runs
 fixed <- data.frame( K = K,
                      C = NA,
-                     sigma_g = sigma_g,
                      model = "ricker",
                      precision = 0.0000001,
                      timeout = 20000,
@@ -51,7 +50,7 @@ models <- mclapply(1:dim(pars)[1], function(i){
                      reward_fn, f = f, 
                      sigma_g = pars[i, "sigma_g"], 
                      sigma_m  = pars[i, "sigma_m"],
-                     noise = pars[i, "noise"])
+                     noise = as.character(pars[i, "noise"]))
 },
 mc.cores = mc.cores)
 
