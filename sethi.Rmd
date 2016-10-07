@@ -16,7 +16,7 @@ states <- seq(0, 1, len=100)
 actions <- states  # Vector of actions: harvest
 obs <- states
 
-K = 1
+K = 0.66
 discount = 0.95
 
 vars <- expand.grid(r = c(0.5, 1), sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.5), noise = c("lognormal", "uniform"))
@@ -29,7 +29,7 @@ fixed <- data.frame( K = K,
                      model = "ricker",
                      precision = 0.0000001,
                      timeout = 20000,
-                     timeInterval = 1000,
+                     timeInterval = 5000,
                      max_state = max(states), max_obs = max(obs), max_action = max(actions), 
                      min_state = min(states), min_obs = min(obs), min_action = min(actions))
 pars <- data.frame(vars, fixed)
@@ -74,14 +74,61 @@ alphas <- mclapply(1:length(models), function(i){
          mc.cores = mc.cores)
 ```
 
-## pomdp policy
+```{r}
+library(purrr)
+library(ggplot2)
+library(dplyr)
+library(appl)
+```
+
 
 ```{r}
-i = 1
-m <- models[[i]]
-alpha <- alphas[[i]]
-df <- compute_policy(alpha, m$transition, m$observation, m$reward)
+# alphas <- original_alphas
+# models <- original_models
+
+alphas <- alphas_from_log(meta)
+models <- models_from_log(meta)
 ```
+
+
+## Convergence testing
+
+```{r}
+intermediate_policies <- function(meta, log_dir = "."){
+  lapply(1:dim(meta)[[1]], function(i){
+    id <- meta[i,"id"]
+    lapply(list.files(log_dir, paste0(id, ".*\\.policy")), function(file){
+      appl:::read_policyx(paste0(log_dir, "/", file))
+    })
+  })
+}
+
+df <- 
+purrr::map_df(1:length(models), function(j){
+  alphas <- intermediate_policies(meta)[[j]]
+  m <- models[[j]]
+  purrr::map_df(1:length(alphas), function(i)
+    compute_policy(alphas[[i]], m$transition, m$observation, m$reward),
+    .id = "intermediate") 
+}, .id = "model")
+
+df %>% ggplot(aes(states[state], states[state] - actions[policy], col=intermediate)) + geom_line() + facet_wrap(~model)
+
+```
+## pomdp policy
+
+
+```{r}
+
+df <- purrr::map_df(1:length(models), function(i)
+  compute_policy(alphas[[i]], models[[i]]$transition, models[[i]]$observation, models[[i]]$reward),
+  .id = "model")
+
+df %>% ggplot(aes(states[state], states[state] - actions[policy], col=model)) + geom_line()
+```
+
+
+
 
 ## Det policy
 
