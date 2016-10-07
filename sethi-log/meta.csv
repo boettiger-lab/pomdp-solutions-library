@@ -1,0 +1,17 @@
+id,load_time_sec,init_time_sec,run_time_sec,final_precision,end_condition,n_states,n_obs,n_actions,discount,date,r,sigma_m,sigma_g,noise,K,C,model,precision,timeout,timeInterval,max_state,max_obs,max_action,min_state,min_obs,min_action
+efdd3b6834,4.93,1827.54,20016.1,0.153838,  Preset timeout reached,100,100,100,0.95,2016-10-07 06:32:11,0.5,0.5,0.5,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef2d3b6834,4.61,1058.82,21065.1,0.407831,  Preset timeout reached,100,100,100,0.95,2016-10-07 06:49:48,1,0.5,0.1,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef9d3b6834,4.54,1008.6,21229.6,0.200598,  Preset timeout reached,100,100,100,0.95,2016-10-07 06:52:35,0.5,0.5,0.1,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+efad3b6834,4.56,1062.32,21321.3,0.407831,  Preset timeout reached,100,100,100,0.95,2016-10-07 06:54:00,1,0.5,0.1,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+efbd3b6834,4.62,1661.69,21951.4,0.00499394,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:04:30,0.5,0.1,0.5,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef4d3b6834,4.71,1823,22018.5,0.016655,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:05:38,1,0.1,0.5,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+efcd3b6834,4.78,1827.6,22135,0.0120224,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:07:25,1,0.1,0.5,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef3d3b6834,4.86,1670.06,22165.9,0.0039292,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:07:55,0.5,0.1,0.5,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef04dad2ee1,4.42,994.03,22716,0.0245006,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:17:08,1,0.1,0.1,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+eef4dad2ee1,4.32,954.06,22773.9,0.0100297,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:18:22,0.5,0.1,0.1,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef7d3b6834,4.47,959.2,22819.4,0.0103159,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:18:57,0.5,0.1,0.1,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef1d3b6834,4.55,1011.54,23915.9,0.198627,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:37:12,0.5,0.5,0.1,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef8d3b6834,4.39,1014.1,24021,0.0262262,  Preset timeout reached,100,100,100,0.95,2016-10-07 07:39:01,1,0.1,0.1,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef6d3b6834,5.11,1941.09,25775.9,0.326515,  Preset timeout reached,100,100,100,0.95,2016-10-07 08:08:15,1,0.5,0.5,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+efed3b6834,4.88,1940.61,25968.7,0.326515,  Preset timeout reached,100,100,100,0.95,2016-10-07 08:11:28,1,0.5,0.5,uniform,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
+ef5d3b6834,4.92,1823.24,26410.6,0.143668,  Preset timeout reached,100,100,100,0.95,2016-10-07 08:18:54,0.5,0.5,0.5,lognormal,0.66,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0
