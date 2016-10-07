@@ -1,0 +1,134 @@
+
+
+```r
+library(purrr)
+library(ggplot2)
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:purrr':
+## 
+##     contains, order_by
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+library(appl)
+```
+
+
+
+```r
+# alphas <- original_alphas
+# models <- original_models
+
+meta <- read.csv("meta.csv")
+
+alphas <- alphas_from_log(meta)
+models <- models_from_log(meta)
+
+
+states <- seq(meta[1,]$min_state, meta[1,]$max_state, len=meta[1,]$n_states)
+actions <- seq(meta[1,]$min_action, meta[1,]$max_action, len=meta[1,]$n_action)
+discount <- meta[1,]$discount
+```
+
+
+## Det policy
+
+
+```r
+f <- f_from_log(meta)[[1]]
+
+S_star <- optimize(function(x) x / discount - f(x,0), c(min(states),max(states)))$minimum
+h <- pmax(states - S_star,  0)
+policy <- sapply(h, function(h) which.min((abs(h - actions))))
+det <- data.frame(policy, value = 1:length(states), state = 1:length(states))
+```
+
+
+## Convergence testing
+
+
+```r
+intermediate_policies <- function(meta, log_dir = "."){
+  lapply(1:dim(meta)[[1]], function(i){
+    id <- meta[i,"id"]
+    lapply(list.files(log_dir, paste0(id, ".*\\.policy")), function(file){
+      appl:::read_policyx(paste0(log_dir, "/", file))
+    })
+  })
+}
+
+df1 <- 
+purrr::map_df(1:length(models), function(j){
+  alphas <- intermediate_policies(meta)[[j]]
+  m <- models[[j]]
+  purrr::map_df(1:length(alphas), function(i)
+    compute_policy(alphas[[i]], m$transition, m$observation, m$reward),
+    .id = "intermediate") 
+}, .id = "model")
+
+df1 %>% ggplot(aes(states[state], states[state] - actions[policy], col=intermediate)) + geom_line() + facet_wrap(~model, scales = "free") + 
+  geom_line(data = det, col="black")
+```
+
+![](sethi-results_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
+## Explore POMDP policy
+
+
+
+```r
+df <- purrr::map_df(1:length(models), function(i)
+  compute_policy(alphas[[i]], models[[i]]$transition, models[[i]]$observation, models[[i]]$reward),
+  .id = "model")
+
+## Join to metadata table
+meta$model <- as.character(1:length(models))
+df <- dplyr::left_join(df, meta, by = "model")
+```
+
+
+
+
+```r
+df %>% filter(noise == "lognormal") %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col = as.factor(r))) +
+  geom_line() +
+  facet_grid(sigma_m ~ sigma_g, scales = "free") +
+  geom_line(data = det, col="black")
+```
+
+![](sethi-results_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
+
+
+
+```r
+df %>% filter(noise == "uniform") %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col = as.factor(r))) +
+  geom_line() +
+  facet_grid(sigma_m ~ sigma_g, scales = "free") +
+  geom_line(data = det, col="black")
+```
+
+![](sethi-results_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
