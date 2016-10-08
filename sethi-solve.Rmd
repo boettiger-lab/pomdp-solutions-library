@@ -1,0 +1,153 @@
+---
+output:
+  html_document: 
+    keep_md: yes
+    variant: markdown_github
+---  
+
+```{r setup, include=FALSE}
+library("appl")
+library("parallel")
+mc.cores = 16
+
+### SETUP ###
+log_dir = "."
+states <- seq(0, 1, len=100)
+actions <- states  # Vector of actions: harvest
+obs <- states
+
+K = 0.66
+discount = 0.95
+
+vars <- expand.grid(sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.5), noise = c("lognormal", "uniform"), model = c("allen", "bh"))
+
+bh <- function(r, K)
+  function(x, h){
+    s <- pmax(x - h, 0)
+    (1 + r) * s / (1 + r * s / K)
+  }
+
+
+
+## Detect available memory (linux servers only)
+
+## Bind this to a data.frame listing eahc of the fixed parameters across all runs
+fixed <- data.frame( K = K,
+                     r = 1,
+                     C = 0.2,
+                     precision = 0.0000001,
+                     timeout = 20000,
+                     timeInterval = 5000,
+                     max_state = max(states), max_obs = max(obs), max_action = max(actions), 
+                     min_state = min(states), min_obs = min(obs), min_action = min(actions))
+pars <- data.frame(vars, fixed)
+
+## Usual assumption at the moment for reward fn
+reward_fn <- function(x,h) pmin(x,h)
+
+## Compute alphas for the above examples
+models <- mclapply(1:dim(pars)[1], function(i){
+  
+  ## Select the model
+  f <- switch(pars[i, "model"], 
+              allen = appl:::allen(pars[i, "r"], pars[i, "K"], pars[i, "C"]),
+              ricker = appl:::ricker(pars[i, "r"], pars[i, "K"]),
+              bh = bh(pars[i, "r"], pars[i,"K"])
+  )
+  ## Compute matrices
+  fisheries_matrices(states, actions, obs, 
+                     reward_fn, f = f, 
+                     sigma_g = pars[i, "sigma_g"], 
+                     sigma_m  = pars[i, "sigma_m"],
+                     noise = as.character(pars[i, "noise"]))
+},
+mc.cores = mc.cores)
+
+```
+
+## run sarsop
+
+```{r}  
+alphas <- mclapply(1:length(models), function(i){
+         m <- models[[i]]
+         p <- pars[i,]
+         sarsop(m$transition,
+                m$observation,
+                m$reward,
+                discount = discount,
+                precision = pars[1, "precision"],
+                timeout = pars[1, "timeout"],
+                timeInterval = pars[1, "timeInterval"],
+                log_dir = log_dir,
+                log_data = p)},
+         mc.cores = mc.cores)
+```
+
+
+
+
+---
+output:
+  html_document: 
+    keep_md: yes
+    variant: markdown_github
+---  
+
+```{r setup}
+
+alpha = 0.01
+
+vars <- expand.grid(cost = c("linear", "quadaratic"))
+## Bind this to a data.frame listing eahc of the fixed parameters across all runs
+fixed <- data.frame( K = K,
+                     r = 1,
+                     C = NA,
+                     sigma_g = 0.1,
+                     sigma_m = 0.5,
+                     noise = "lognormal",
+                     model = "ricker",
+                     precision = 0.0000001,
+                     timeout = 20000,
+                     timeInterval = 5000,
+                     max_state = max(states), max_obs = max(obs), max_action = max(actions), 
+                     min_state = min(states), min_obs = min(obs), min_action = min(actions))
+pars <- data.frame(vars, fixed)
+
+
+models <- list(fisheries_matrices(states, actions, obs, 
+                     reward_fn = function(x,a) pmin(x,a) - alpha * a, 
+                     f = appl:::ricker(1, K), 
+                     sigma_g = pars[i, "sigma_g"], 
+                     sigma_m  = pars[i, "sigma_m"],
+                     noise = as.character(pars[i, "noise"])),
+                fisheries_matrices(states, actions, obs, 
+                     reward_fn = function(x,a) pmin(x,a) - alpha * a^2, 
+                     f = appl:::ricker(1, K), 
+                     sigma_g = pars[i, "sigma_g"], 
+                     sigma_m  = pars[i, "sigma_m"],
+                     noise = as.character(pars[i, "noise"]))
+)
+
+
+```
+
+## run sarsop
+
+
+```{r}  
+alphas <- mclapply(1:length(models), function(i){
+         m <- models[[i]]
+         p <- pars[i,]
+         sarsop(m$transition,
+                m$observation,
+                m$reward,
+                discount = discount,
+                precision = pars[1, "precision"],
+                timeout = pars[1, "timeout"],
+                timeInterval = pars[1, "timeInterval"],
+                log_dir = log_dir,
+                log_data = p)},
+         mc.cores = 2)
+```
+
+

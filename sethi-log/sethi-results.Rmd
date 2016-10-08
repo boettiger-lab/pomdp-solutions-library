@@ -101,3 +101,64 @@ df %>% filter(noise == "uniform") %>%
   geom_line(data = det, col="black")
 ```
 
+
+
+## Simulation
+
+```{r}
+s1 <- meta_from_log(data.frame(r = 1, sigma_m = 0.5, sigma_g = 0.5, noise = "lognormal"))
+alpha <- alphas_from_log(s1)[[1]]
+m <- models_from_log(s1)[[1]]
+
+```
+
+Simulation in which belief over states is updated in each time step, used to determine a new policy, which is then used to choose the best action given the most recent observation.
+
+```{r}
+sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 50, Tmax = 100, alpha = alpha)$df, .id = "rep")
+```
+
+
+Simulation in which the policy is not updated based on the most recent belief over states, but remains the policy given a uniform prior over belief states. 
+
+```{r}
+s <- compute_policy(alpha,m$transition, m$observation, m$reward)
+sim2 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = 50, Tmax = 100, observation = m$observation, policy = s$policy), .id = "rep")
+```
+
+
+
+```{r}
+sim3 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = 50, Tmax = 100, observation = m$observation, policy = det$policy), .id = "rep")
+```
+
+
+```{r}
+df <- bind_rows(pomdp = sim, static = sim2, det = sim3, .id = "scenario")
+df %>% group_by(scenario, rep) %>% summarise(value = sum(value)) %>%  group_by(scenario) %>% summarise(mean(value))
+
+df %>% group_by(scenario, time) %>% summarise(value = mean(value), state = mean(state)) %>%
+ggplot(aes(time, state, col = scenario)) + geom_line()
+```
+
+
+## Small noise
+
+
+```{r}
+s1 <- meta_from_log(data.frame(r = 1, sigma_m = 0.5, sigma_g = 0.1, noise = "lognormal"))
+alpha <- alphas_from_log(s1)[[1]]
+m <- models_from_log(s1)[[1]]
+
+sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 50, Tmax = 100, alpha = alpha)$df, .id = "rep")
+s <- compute_policy(alpha,m$transition, m$observation, m$reward)
+sim2 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = 50, Tmax = 100, observation = m$observation, policy = s$policy), .id = "rep")
+sim3 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = 50, Tmax = 100, observation = m$observation, policy = det$policy), .id = "rep")
+
+df <- bind_rows(pomdp = sim, static = sim2, det = sim3, .id = "scenario")
+df %>% group_by(scenario, rep) %>% summarise(value = sum(value)) %>%  group_by(scenario) %>% summarise(mean(value))
+
+df %>% group_by(scenario, time) %>% summarise(value = mean(value), state = mean(state)) %>%
+ggplot(aes(time, state, col = scenario)) + geom_line()
+```
+
