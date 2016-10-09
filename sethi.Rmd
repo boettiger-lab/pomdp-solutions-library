@@ -153,15 +153,15 @@ pars <- data.frame(vars, fixed)
 models <- list(fisheries_matrices(states, actions, obs, 
                      reward_fn = function(x,a) pmin(x,a) - beta * a, 
                      f = appl:::ricker(1, K), 
-                     sigma_g = pars[i, "sigma_g"], 
-                     sigma_m  = pars[i, "sigma_m"],
-                     noise = as.character(pars[i, "noise"])),
+                     sigma_g = pars[1, "sigma_g"], 
+                     sigma_m  = pars[1, "sigma_m"],
+                     noise = as.character(pars[1, "noise"])),
                 fisheries_matrices(states, actions, obs, 
                      reward_fn = function(x,a) pmin(x,a) - beta * a^2, 
                      f = appl:::ricker(1, K), 
-                     sigma_g = pars[i, "sigma_g"], 
-                     sigma_m  = pars[i, "sigma_m"],
-                     noise = as.character(pars[i, "noise"]))
+                     sigma_g = pars[2, "sigma_g"], 
+                     sigma_m  = pars[2, "sigma_m"],
+                     noise = as.character(pars[2, "noise"]))
 )
 ```
 

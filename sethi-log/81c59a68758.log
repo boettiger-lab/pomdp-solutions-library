@@ -1,0 +1,11 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/81c59a68758.pomdpx
+  loading time : 4.36s 
+
+SARSOP initializing ...
+  initialization time : 666.05s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
