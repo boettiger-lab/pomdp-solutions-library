@@ -84,7 +84,7 @@ models <- mclapply(1:dim(pars)[1], function(i){
   f <- switch(pars[i, "model"], 
               allen = appl:::allen(pars[i, "r"], pars[i, "K"], pars[i, "C"]),
               ricker = appl:::ricker(pars[i, "r"], pars[i, "K"]),
-              bh = appl::bh(pars[i, "r"], pars[i, "K"])
+              bh = appl:::bh(pars[i, "r"], pars[i, "K"])
   )
   
   reward_fn <- switch(pars[i, "cost"],
