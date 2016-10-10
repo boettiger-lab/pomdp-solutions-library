@@ -86,6 +86,18 @@ meta$model <- as.character(1:length(models))
 df <- dplyr::left_join(df, meta, by = "model")
 ```
 
+
+
+```{r}
+df %>% filter(r == 1) %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col = noise)) +
+  geom_line() +
+  facet_grid(sigma_m ~ sigma_g, scales = "free") +
+  geom_line(data = det, col="black") + 
+  coord_cartesian(ylim = c(0,0.5))
+```
+
+
 ## Lognormal noise
 
 Columns indicate growth noise `sigma_g`, rows indicate measurement error `sigma_m`.
