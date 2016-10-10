@@ -3,6 +3,8 @@ output:
   html_document: 
     keep_md: yes
     variant: markdown_github
+#  markdown_document:
+#    variant: markdown_github
 ---  
 
 ```{r}
@@ -10,6 +12,7 @@ library(purrr)
 library(ggplot2)
 library(dplyr)
 library(appl)
+library(printr)
 ```
 
 
@@ -28,6 +31,8 @@ models <- models_from_log(meta)
 states <- seq(meta[1,]$min_state, meta[1,]$max_state, len=meta[1,]$n_states)
 actions <- seq(meta[1,]$min_action, meta[1,]$max_action, len=meta[1,]$n_action)
 discount <- meta[1,]$discount
+
+meta
 ```
 
 

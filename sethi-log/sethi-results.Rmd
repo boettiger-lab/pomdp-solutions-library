@@ -17,9 +17,10 @@ library(appl)
 # alphas <- original_alphas
 # models <- original_models
 
-meta <- read.csv("meta.csv")
+meta <- meta_from_log(data.frame(model = "ricker"))
 
 alphas <- alphas_from_log(meta)
+meta$sigma_g <- as.numeric(meta$sigma_g)
 models <- models_from_log(meta)
 
 
@@ -62,7 +63,10 @@ purrr::map_df(1:length(models), function(j){
     .id = "intermediate") 
 }, .id = "model")
 
-df1 %>% ggplot(aes(states[state], states[state] - actions[policy], col=intermediate)) + geom_line() + facet_wrap(~model, scales = "free") + 
+df1 %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col=intermediate)) + 
+  geom_line() + 
+  facet_wrap(~model, scales = "free") + 
   geom_line(data = det, col="black")
 
 
@@ -107,6 +111,7 @@ df %>% filter(noise == "uniform") %>%
 
 ```{r}
 s1 <- meta_from_log(data.frame(r = 1, sigma_m = 0.5, sigma_g = 0.5, noise = "lognormal"))
+s1$sigma_g <- as.numeric(s1$sigma_g)
 alpha <- alphas_from_log(s1)[[1]]
 m <- models_from_log(s1)[[1]]
 
@@ -148,6 +153,9 @@ ggplot(aes(time, state, col = scenario)) + geom_line()
 ```{r}
 s1 <- meta_from_log(data.frame(r = 1, sigma_m = 0.5, sigma_g = 0.1, noise = "lognormal"))
 alpha <- alphas_from_log(s1)[[1]]
+
+s1$sigma_g <- as.numeric(s1$sigma_g)
+
 m <- models_from_log(s1)[[1]]
 
 sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = 50, Tmax = 100, alpha = alpha)$df, .id = "rep")
