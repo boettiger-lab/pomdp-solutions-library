@@ -21,10 +21,9 @@ log_dir = "sethi-50-states"
 # alphas <- original_alphas
 # models <- original_models
 
-meta <- meta_from_log(data.frame(model = "ricker", cost = "none"), log_dir = log_dir)
+meta <- meta_from_log(data.frame(cost = "none"), log_dir = log_dir)
 
 alphas <- alphas_from_log(meta, log_dir = log_dir)
-#meta$sigma_g <- as.numeric(meta$sigma_g)
 models <- models_from_log(meta)
 
 states <- seq(meta[1,]$min_state, meta[1,]$max_state, len=meta[1,]$n_states)
@@ -38,12 +37,17 @@ meta
 ## Det policy
 
 ```{r}
-f <- f_from_log(meta)[[1]]
+fs <- f_from_log(meta)
 
-S_star <- optimize(function(x) x / discount - f(x,0), c(min(states),max(states)))$minimum
-h <- pmax(states - S_star,  0)
-policy <- sapply(h, function(h) which.min((abs(h - actions))))
-det <- data.frame(policy, value = 1:length(states), state = 1:length(states))
+dets <- purrr::map_df(1:dim(meta)[[1]], function(i){ 
+  f <- fs[[i]]
+  S_star <- optimize(function(x) x / discount - f(x,0), c(min(states),max(states)))$minimum
+  h <- pmax(states - S_star,  0)
+  policy <- sapply(h, function(h) which.min((abs(h - actions))))
+  det <- data.frame(policy, value = 1:length(states), state = 1:length(states))
+}, .id = "model_id"
+)
+
 ```
 
 
@@ -61,13 +65,12 @@ purrr::map_df(1:length(models), function(j){
   purrr::map_df(1:length(alphas), function(i)
     compute_policy(alphas[[i]], m$transition, m$observation, m$reward),
     .id = "intermediate") 
-}, .id = "model")
+}, .id = "model_id")
 
 df1 %>% 
   ggplot(aes(states[state], states[state] - actions[policy], col=intermediate)) + 
   geom_line() + 
-  facet_wrap(~model, scales = "free") + 
-  geom_line(data = det, col="black") + 
+  facet_wrap(~model_id, scales = "free") + 
   coord_cartesian(ylim = c(0,0.5))
 
 
@@ -79,49 +82,39 @@ df1 %>%
 ```{r}
 df <- purrr::map_df(1:length(models), function(i)
   compute_policy(alphas[[i]], models[[i]]$transition, models[[i]]$observation, models[[i]]$reward),
-  .id = "model")
+  .id = "model_id")
 
 ## Join to metadata table
-meta$model <- as.character(1:length(models))
-df <- dplyr::left_join(df, meta, by = "model")
-```
+meta$model_id <- as.character(1:length(models))
 
+## Join to deterministic case
+df2 <- bind_rows(
+  left_join(df, meta, by = "model_id"),
+  left_join(dets, meta, by = "model_id") %>% mutate(sigma_m = 0))
 
-
-```{r}
-df %>% filter(r == 1) %>% 
-  ggplot(aes(states[state], states[state] - actions[policy], col = noise)) +
-  geom_line() +
-  facet_grid(sigma_m ~ sigma_g, scales = "free") +
-  geom_line(data = det, col="black") + 
-  coord_cartesian(ylim = c(0,0.5))
 ```
 
 
 ## Lognormal noise
 
-Columns indicate growth noise `sigma_g`, rows indicate measurement error `sigma_m`.
 
 ```{r}
-df %>% filter(noise == "lognormal") %>% 
-  ggplot(aes(states[state], states[state] - actions[policy], col = as.factor(r))) +
+df2 %>% filter(r == 1, noise == "lognormal") %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col = as.character(sigma_m))) +
   geom_line() +
-  facet_grid(sigma_m ~ sigma_g, scales = "free") +
-  geom_line(data = det, col="black") + 
-  coord_cartesian(ylim = c(0,0.5))
+  facet_grid(model ~ sigma_g, scales = "free") +
+  coord_cartesian(ylim = c(0,0.8))
 ```
+
 
 ## Uniform
 
-Columns indicate growth noise `sigma_g`, rows indicate measurement error `sigma_m`.
-
 ```{r}
-df %>% filter(noise == "uniform") %>% 
-  ggplot(aes(states[state], states[state] - actions[policy], col = as.factor(r))) +
+df2 %>% filter(r == 1, noise == "uniform") %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col = as.character(sigma_m))) +
   geom_line() +
-  facet_grid(sigma_m ~ sigma_g, scales = "free") +
-  geom_line(data = det, col="black") + 
-  coord_cartesian(ylim = c(0,0.5))
+  facet_grid(model ~ sigma_g, scales = "free") +
+  coord_cartesian(ylim = c(0,0.8))
 ```
 
 

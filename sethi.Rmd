@@ -9,7 +9,7 @@ output:
 library("appl")
 library("dplyr")
 library("parallel")
-mc.cores = 9
+mc.cores = 12
 
 log_dir = "."
 states <- seq(0, 1, len=100)
@@ -29,34 +29,17 @@ reward_fn <- function(x,h) pmin(x,h)
 ```{r}
 
 ## Ricker Models
-vars <- expand.grid(r = c(0.5, 1), sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.5), noise = c("lognormal", "uniform"))
+vars <- expand.grid(r = c(0.5, 1, 1.5), sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.3, 0.5), noise = c("lognormal", "uniform"), model = c("ricker", "allen", "bh"))
 fixed <- data.frame( K = K,
                      C = NA,
-                     model = "ricker",
                      precision = 0.0000001,
-                     timeout = 20000,
-                     timeInterval = 5000,
+                     timeout = 10000,
+                     timeInterval = 2000,
                      max_state = max(states), max_obs = max(obs), max_action = max(actions), 
                      min_state = min(states), min_obs = min(obs), min_action = min(actions),
                      cost = "none", 
-                     beta = NA)
+                     beta = 0)
 set1 <- data.frame(vars, fixed)
-
-## Allen, B-H models
-vars <- expand.grid(sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.5), model = c("allen", "bh"))
-fixed <- data.frame( K = K,
-                     r = 1,
-                     C = 0.05,
-                     noise = "lognormal",
-                     precision = 0.0000001,
-                     timeout = 20000,
-                     timeInterval = 5000,
-                     max_state = max(states), max_obs = max(obs), max_action = max(actions), 
-                     min_state = min(states), min_obs = min(obs), min_action = min(actions),
-                     cost = "none",
-                     beta = NA)
-set2 <- data.frame(vars, fixed)
-
 
 ## Alternate reward fns
 vars <- expand.grid(cost = c("linear", "quadaratic"))
@@ -73,9 +56,9 @@ fixed <- data.frame( K = K,
                      max_state = max(states), max_obs = max(obs), max_action = max(actions), 
                      min_state = min(states), min_obs = min(obs), min_action = min(actions),
                      beta = 0.01)
-set3 <- data.frame(vars, fixed)
+set2 <- data.frame(vars, fixed)
 
-pars <- bind_rows(set1, set2, set3)
+pars <- bind_rows(set1, set2)
 
 ```
 
@@ -93,8 +76,8 @@ models <- mclapply(1:dim(pars)[1], function(i){
   
   reward_fn <- switch(pars[i, "cost"],
                    none = function(x,h) pmin(x,h),
-                   linear = function(x,h) pmin(x,h) - pars[i, "beta"] * h,
-                   quadratic = function(x,h) pmin(x,h) - beta * h ^ 2
+                   linear = function(x,h) pmin(x,h) - pars[i, "beta"] * h / min(x, 1e-12),
+                   quadratic = function(x,h) pmin(x,h) - pars[i, "beta"] * h ^ 2 / min(x, 1e-12)
                    )
   
   ## Compute matrices
