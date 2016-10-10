@@ -9,14 +9,14 @@ output:
 library("appl")
 library("dplyr")
 library("parallel")
-mc.cores = 13
+mc.cores = 26
 
 log_dir = "."
-states <- seq(0, 1, len=100)
+states <- seq(0, 1, len=50)
 actions <- states  # Vector of actions: harvest
 obs <- states
 
-K = 0.66
+K = 0.33
 discount = 0.95
 
 ## Usual assumption at the moment for reward fn
@@ -44,7 +44,7 @@ set1 <- data.frame(vars, fixed)
 vars <- expand.grid(sigma_m = c(0.1, 0.5), sigma_g = c(0.1, 0.5), model = c("allen", "bh"))
 fixed <- data.frame( K = K,
                      r = 1,
-                     C = 0.2,
+                     C = 0.05,
                      noise = "lognormal",
                      precision = 0.0000001,
                      timeout = 20000,

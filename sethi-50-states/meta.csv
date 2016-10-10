@@ -1,0 +1,23 @@
+id,load_time_sec,init_time_sec,run_time_sec,final_precision,end_condition,n_states,n_obs,n_actions,discount,date,r,sigma_m,sigma_g,noise,K,C,model,precision,timeout,timeInterval,max_state,max_obs,max_action,min_state,min_obs,min_action,cost,beta
+52228a0b85f,0.48,0.46,0.82,9.0273e-08,  target precision reached,50,50,50,0.95,2016-10-09 05:27:48,0.5,0.1,0.1,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52628a0b85f,0.77,25.39,237.84,9.81998e-08,  target precision reached,50,50,50,0.95,2016-10-09 05:31:48,0.5,0.1,0.5,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52728a0b85f,0.93,25.98,1553.15,9.87802e-08,  target precision reached,50,50,50,0.95,2016-10-09 05:53:47,1,0.1,0.5,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52328a0b85f,0.59,11.02,20022.4,5.27868e-06,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:01:30,1,0.1,0.1,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52a28a0b85f,0.49,21,20037,0.00124817,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:01:49,1,0.1,0.1,lognormal,0.33,0.05,allen,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52428a0b85f,0.78,12.38,20033.2,0.0139014,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:01:49,0.5,0.5,0.1,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52928a0b85f,0.52,28.43,20048.1,0.0225452,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:01:57,1,0.5,0.5,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52828a0b85f,0.98,29.27,20052.4,0.0112035,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:02:07,0.5,0.5,0.5,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+51b310edf5a,0.58,23.51,20054.7,0.00265882,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:02:09,1,0.1,0.1,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52528a0b85f,0.6,11.84,20105.6,0.0557308,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:02:58,1,0.5,0.1,uniform,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+53328a0b85f,0.6,27.4,20173.1,0.155332,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:04:07,1,0.5,0.1,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,quadaratic,0.01
+52d28a0b85f,1.1,69.98,20187.6,0.0136791,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:04:22,1,0.5,0.5,lognormal,0.33,0.05,allen,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+51f310edf5a,0.64,66.52,20195.1,4.98619e-05,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:04:28,1,0.1,0.5,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52c28a0b85f,0.6,65.45,20212.4,0.000279376,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:04:42,1,0.1,0.5,lognormal,0.33,0.05,allen,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+51e310edf5a,0.58,58.27,20232,7.4274e-06,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:05:07,0.5,0.1,0.5,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+51c310edf5a,0.68,24.39,20269.1,0.0446546,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:05:43,0.5,0.5,0.1,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+51a310edf5a,0.64,23.46,20308.2,0.000940399,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:06:23,0.5,0.1,0.1,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52b28a0b85f,0.58,22.85,20317.4,0.0478731,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:06:26,1,0.5,0.1,lognormal,0.33,0.05,allen,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52028a0b85f,0.71,70.89,20340,0.0390934,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:06:48,0.5,0.5,0.5,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+53228a0b85f,0.64,26.3,20467.5,0.153526,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:08:56,1,0.5,0.1,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,linear,0.01
+51d310edf5a,0.55,26.94,20474.8,0.155332,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:09:09,1,0.5,0.1,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
+52128a0b85f,1.1,77.96,21110,0.0993376,  Preset timeout reached,50,50,50,0.95,2016-10-09 11:19:44,1,0.5,0.5,lognormal,0.33,NA,ricker,1e-07,20000,5000,1,1,1,0,0,0,none,NA
