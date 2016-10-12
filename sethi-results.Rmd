@@ -196,25 +196,42 @@ ggplot(aes(time, states[state], col = scenario)) + geom_line()
 
 
 
+------
 
-## Small both
+## Policy as a function of prior:
 
+Policy is much more conservative when the prior belief is skewed towards small stock sizes, and more aggressive when the policy is skewed towards larger ones:
 
 ```{r}
+K_i <- which.min(abs(.66 - states))
+
 s1 <-  meta %>% filter(r == 1, sigma_m == 0.1, sigma_g == 0.1, model == "ricker", noise == "lognormal")
 alpha <- alphas_from_log(s1, log_dir)[[1]]
 m <- models_from_log(s1)[[1]]
-det_policy <- get_det(meta)
 
-sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
-s <- compute_policy(alpha,m$transition, m$observation, m$reward)
-sim2 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = x0, Tmax = 100, observation = m$observation, policy = s$policy), .id = "rep")
-sim3 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = x0, Tmax = 100, observation = m$observation, policy = det_policy), .id = "rep")
 
-df <- bind_rows(pomdp = sim, static = sim2, det = sim3, .id = "scenario")
-df %>% group_by(scenario, rep) %>% summarise(value = sum(value)) %>%  group_by(scenario) %>% summarise(mean(value))
 
-df %>% group_by(scenario, time) %>% summarise(value = mean(value), state = mean(state)) %>%
-ggplot(aes(time, states[state], col = scenario)) + geom_line()
+unif <- compute_policy(alpha, m$transition, m$observation, m$reward)
+low <- compute_policy(alpha, m$transition, m$observation, m$reward, state_prior = m$observation[,5,1])
+high <- compute_policy(alpha, m$transition, m$observation, m$reward, state_prior = m$observation[,K_i,1])
+
+bind_rows(unif = unif, low = low, high = high, .id = "prior") %>% 
+  ggplot(aes(states[state], states[state] - actions[policy], col = prior)) + 
+  geom_line() +
+  coord_cartesian(ylim = c(0,0.8))
 ```
+
+Priors:
+
+```{r}
+bind_rows(unif = data.frame(state = states, probability = rep(1, length(states))/length(states)),
+          low = data.frame(state = states, probability = m$observation[,5,1]),
+          high = data.frame(state = states, probability = m$observation[,K_i,1]),
+          .id = "prior") %>%
+  ggplot(aes(state,probability, col=prior)) + geom_point()
+
+```
+
+
+
 
