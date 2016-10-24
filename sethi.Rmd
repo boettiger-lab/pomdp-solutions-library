@@ -12,7 +12,7 @@ library("parallel")
 mc.cores = 12
 
 log_dir = "."
-states <- seq(0, 1, len=100)
+states <- seq(0, 1, len=50)
 actions <- states  # Vector of actions: harvest
 obs <- states
 
