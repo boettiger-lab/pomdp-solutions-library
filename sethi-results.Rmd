@@ -16,7 +16,7 @@ options(knitr.table.format = 'markdown')
 
 
 ```{r}
-log_dir = "."
+log_dir = "sethi-50-states"
 
 # alphas <- original_alphas
 # models <- original_models
