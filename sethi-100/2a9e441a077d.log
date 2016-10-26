@@ -1,0 +1,29 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/2a9e441a077d.pomdpx
+  loading time : 4.95s 
+
+SARSOP initializing ...
+  initialization time : 4.00s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 4       0       0        0          0          0           100      1        
+ 4.11    1       1        0          0          0           1        1        
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  target precision reached
+  target precision  : 0.000000
+  precision reached : 0.000000 
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 4.11    1       1        0          0          0           1        1        
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./2a9e441a077d.policyx
+

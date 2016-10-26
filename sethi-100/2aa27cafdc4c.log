@@ -1,0 +1,49 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/2aa27cafdc4c.pomdpx
+  loading time : 5.23s 
+
+SARSOP initializing ...
+  initialization time : 739.82s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 739.82  0       0        0.84933    1.42144    0.572108    100      1        
+ 867.48  2       50       0.996603   1.30303    0.306427    146      28       
+ 1126.1  5       100      1.04664    1.30294    0.256295    61       50       
+ 1315.76 6       150      1.08529    1.30283    0.217543    30       61       
+ 1672.15 8       200      1.10469    1.30265    0.19796     28       76       
+ 2287.31 10      250      1.11514    1.30174    0.186604    20       95       
+Writing policy file: ./2aa27cafdc4c_12_2993.4.policy
+Intermediate policy written(interval: 2000)
+ 2993.4  12      300      1.11941    1.30151    0.182101    30       112      
+ 3871.01 14      350      1.1216     1.30141    0.17981     25       128      
+ 4726.92 16      401      1.12777    1.30127    0.173497    29       143      
+Writing policy file: ./2aa27cafdc4c_18_5607.92.policy
+Intermediate policy written(interval: 2000)
+ 5607.92 18      453      1.12977    1.30069    0.170919    23       157      
+ 6976.33 20      503      1.13112    1.30016    0.169034    21       175      
+Writing policy file: ./2aa27cafdc4c_22_8405.68.policy
+Intermediate policy written(interval: 2000)
+ 8405.68 22      555      1.13316    1.29985    0.16669     26       192      
+ 10105.1 24      607      1.13423    1.29976    0.165527    30       211      
+Writing policy file: ./2aa27cafdc4c_26_11545.9.policy
+Intermediate policy written(interval: 2000)
+ 11545.9 26      659      1.135      1.29975    0.164746    30       228      
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 10000.000000s
+  Actual Time : 11545.920000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 11545.9 26      659      1.135      1.29975    0.164746    30       228      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./2aa27cafdc4c.policyx
+

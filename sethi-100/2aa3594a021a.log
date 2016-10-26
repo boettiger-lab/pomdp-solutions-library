@@ -1,0 +1,38 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/2aa3594a021a.pomdpx
+  loading time : 5.14s 
+
+SARSOP initializing ...
+  initialization time : 1800.99s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1800.99 0       0        3.07802    6.4115     3.33348     100      1        
+ 3088.62 2       51       4.43851    6.13376    1.69526     20       25       
+Writing policy file: ./2aa3594a021a_4_4415.51.policy
+Intermediate policy written(interval: 2000)
+ 4415.51 4       103      4.60847    6.12895    1.52049     12       34       
+Writing policy file: ./2aa3594a021a_6_7461.11.policy
+Intermediate policy written(interval: 2000)
+ 7461.11 6       155      4.73534    6.12472    1.38938     10       47       
+Writing policy file: ./2aa3594a021a_8_10104.9.policy
+Intermediate policy written(interval: 2000)
+ 10104.9 8       207      4.81657    6.12229    1.30572     7        56       
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 10000.000000s
+  Actual Time : 10104.850000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 10104.9 8       207      4.81657    6.12229    1.30572     7        56       
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./2aa3594a021a.policyx
+

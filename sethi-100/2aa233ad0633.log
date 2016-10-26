@@ -1,0 +1,46 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/2aa233ad0633.pomdpx
+  loading time : 4.77s 
+
+SARSOP initializing ...
+  initialization time : 838.82s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 838.82  0       0        2.48145    4.24796    1.7665      100      1        
+ 898.03  3       50       3.60911    4.06739    0.458282    39       23       
+ 1332.72 6       100      3.68283    4.06567    0.382842    50       48       
+ 1919.46 8       153      3.72308    4.06354    0.340465    44       64       
+ 2500.98 10      200      3.73525    4.06341    0.328159    34       76       
+Writing policy file: ./2aa233ad0633_13_3415.64.policy
+Intermediate policy written(interval: 2000)
+ 3415.64 13      253      3.74904    4.0622     0.313154    34       92       
+ 5001.23 15      300      3.75298    4.06204    0.309064    33       111      
+Writing policy file: ./2aa233ad0633_18_6163.53.policy
+Intermediate policy written(interval: 2000)
+ 6163.53 18      353      3.75897    4.06187    0.302903    26       124      
+ 7754.7  20      400      3.76242    4.06173    0.299316    20       140      
+Writing policy file: ./2aa233ad0633_23_9864.64.policy
+Intermediate policy written(interval: 2000)
+ 9864.64 23      455      3.76738    4.05794    0.290553    29       159      
+Writing policy file: ./2aa233ad0633_25_12259.9.policy
+Intermediate policy written(interval: 2000)
+ 12259.9 25      500      3.76926    4.05791    0.288645    29       177      
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 10000.000000s
+  Actual Time : 12259.890000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 12259.9 25      500      3.76926    4.05791    0.288645    29       177      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./2aa233ad0633.policyx
+

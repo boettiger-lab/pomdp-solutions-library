@@ -1,0 +1,43 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/2aa370588e3f.pomdpx
+  loading time : 5.21s 
+
+SARSOP initializing ...
+  initialization time : 2025.17s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 2025.17 0       0        2.21864    5.24304    3.0244      100      1        
+ 2472.74 2       55       2.92107    5.0129     2.09183     15       20       
+ 3406.15 4       109      3.20458    5.009      1.80441     9        31       
+ 3939.2  6       163      3.42125    5.00775    1.5865      7        35       
+Writing policy file: ./2aa370588e3f_7_4833.14.policy
+Intermediate policy written(interval: 2000)
+ 4833.14 7       200      3.5521     5.00757    1.45547     9        41       
+ 5615.05 9       250      3.72347    5.00566    1.28219     6        45       
+ 6507.46 11      303      3.84269    5.00204    1.15935     5        49       
+Writing policy file: ./2aa370588e3f_13_8631.27.policy
+Intermediate policy written(interval: 2000)
+ 8631.27 13      359      3.95959    4.99727    1.03769     7        58       
+ 10425.8 14      400      4.01468    4.99471    0.98003     8        65       
+Writing policy file: ./2aa370588e3f_16_12385.8.policy
+Intermediate policy written(interval: 2000)
+ 12385.8 16      450      4.08918    4.99164    0.902458    6        72       
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 10000.000000s
+  Actual Time : 12385.810000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 12385.8 16      450      4.08918    4.99164    0.902458    6        72       
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./2aa370588e3f.policyx
+

@@ -1,0 +1,41 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/2aa270588e3f.pomdpx
+  loading time : 4.89s 
+
+SARSOP initializing ...
+  initialization time : 1981.70s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 1981.7  0       0        1.30224    3.30968    2.00744     100      1        
+ 2233.01 2       57       1.64945    3.14571    1.49627     14       17       
+ 2669.81 4       111      1.84207    3.14011    1.29804     7        27       
+ 3689.42 5       150      1.94041    3.13917    1.19876     6        42       
+Writing policy file: ./2aa270588e3f_7_4974.87.policy
+Intermediate policy written(interval: 2000)
+ 4974.87 7       200      2.08197    3.1353     1.05334     10       51       
+ 5933.65 9       251      2.19178    3.13313    0.941351    6        56       
+Writing policy file: ./2aa270588e3f_11_7774.41.policy
+Intermediate policy written(interval: 2000)
+ 7774.41 11      307      2.28247    3.13132    0.848847    6        65       
+Writing policy file: ./2aa270588e3f_13_10085.7.policy
+Intermediate policy written(interval: 2000)
+ 10085.7 13      363      2.35959    3.1303     0.770705    7        74       
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 10000.000000s
+  Actual Time : 10085.670000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 10085.7 13      363      2.35959    3.1303     0.770705    7        74       
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ./2aa270588e3f.policyx
+
