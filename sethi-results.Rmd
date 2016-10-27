@@ -12,11 +12,12 @@ library(dplyr)
 library(appl)
 library(printr)
 options(knitr.table.format = 'markdown')
+theme_set(theme_bw())
 ```
 
 
 ```{r}
-log_dir = "sethi-50-states"
+log_dir = "sethi-100"
 
 # alphas <- original_alphas
 # models <- original_models
@@ -53,7 +54,7 @@ dets <- purrr::map_df(1:dim(meta)[[1]], function(i){
 
 ## Convergence testing
 
-```{r}
+```{r fig.width=10, fig.height=10}
 
 
 inter <- appl:::intermediates_from_log(meta, log_dir = log_dir)
@@ -98,7 +99,7 @@ df2 <- bind_rows(
 ## Lognormal noise
 
 
-```{r}
+```{r  fig.width=10, fig.height=10}
 df2 %>% filter(r == 1, noise == "lognormal") %>% 
   ggplot(aes(states[state], states[state] - actions[policy], col = as.character(sigma_m))) +
   geom_line() +
@@ -109,7 +110,7 @@ df2 %>% filter(r == 1, noise == "lognormal") %>%
 
 ## Uniform
 
-```{r}
+```{r  fig.width=10, fig.height=10}
 df2 %>% filter(r == 1, noise == "uniform") %>% 
   ggplot(aes(states[state], states[state] - actions[policy], col = as.character(sigma_m))) +
   geom_line() +
@@ -228,7 +229,7 @@ bind_rows(unif = data.frame(state = states, probability = rep(1, length(states))
           low = data.frame(state = states, probability = m$observation[,5,1]),
           high = data.frame(state = states, probability = m$observation[,K_i,1]),
           .id = "prior") %>%
-  ggplot(aes(state,probability, col=prior)) + geom_point()
+  ggplot(aes(state,probability, col=prior)) + geom_line()
 
 ```
 
