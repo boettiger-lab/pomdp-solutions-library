@@ -1,0 +1,245 @@
+---
+output:
+  html_document: 
+    keep_md: yes
+    variant: markdown_github
+---  
+
+
+
+```{r message=FALSE}
+library("mdplearning")
+library("appl")
+library("pomdpplus")
+library("ggplot2")
+library("tidyr")
+library("purrr")
+library("dplyr")
+library("parallel")
+knitr::opts_chunk$set(cache = FALSE)
+```
+
+
+
+## Problem definition
+
+Identify available solutions in the log that match the desired parameters
+
+```{r}
+log_dir <- "tuna"
+meta <- appl::meta_from_log(data.frame(model ="ricker", sigma_m = 0.3), log_dir)
+meta %>% arrange(r) -> meta
+knitr::kable(meta)
+```
+
+Read in the POMDP problem specification from the log
+
+```{r}
+setup <- meta[1,]
+states <- seq(0, setup$max_state, length=setup$n_states) # Vector of all possible states
+actions <- seq(0, setup$max_action, length=setup$n_actions)   # Vector of actions: harvest
+obs <- states
+sigma_g <- setup$sigma_g
+sigma_m <- setup$sigma_m
+reward_fn <- function(x,h) pmin(x,h)
+discount <- setup$discount 
+models <- models_from_log(meta, reward_fn)
+alphas <- alphas_from_log(meta, log_dir)
+```
+
+
+Compute the deterministic optimum solution:
+
+```{r}
+f <- f_from_log(meta)[[1]]
+S_star <- optimize(function(x) x / discount - f(x,0), c(min(states),max(states)))$minimum
+
+h <- pmax(states - S_star,  0)
+policy <- sapply(h, function(h) which.min((abs(h - actions))))
+det <- data.frame(policy, value = 1:length(states), state = 1:length(states))
+```
+
+
+Compare a uniform prior to individial cases:
+
+```{r}
+low <-  compute_plus_policy(alphas, models, c(1,0,0,0,0,0))
+unif <- compute_plus_policy(alphas, models)
+high <-  compute_plus_policy(alphas, models, c(0, 0, 0, 0, 0, 1))
+df <- dplyr::bind_rows(low = low, unif = unif, high = high, det = det, .id = "prior")
+
+
+ggplot(df, aes(states[state], states[state] - actions[policy], col = prior, pch = prior)) + 
+  geom_point(alpha = 0.5, size = 3) + 
+  geom_line()
+
+```
+
+reformat models for MDP functions as well:
+
+```{r}
+transitions <- lapply(models, `[[`, "transition")
+reward <- models[[1]]$reward
+observation <- models[[1]]$observation
+```
+
+
+------------
+
+
+
+## Compare PLUS and historical data:
+
+```{r}
+set.seed(123)
+data("scaled_data")
+y <- sapply(scaled_data$y, function(y) which.min(abs(states - y)))
+a <- sapply(scaled_data$a, function(a) which.min(abs(actions - a)))
+```
+
+```{r}
+plus_out <- compare_plus(models = models, discount = discount,
+                    obs = y, action = a, alphas = alphas)
+```
+
+## Compare MDP and historical data: 
+
+```{r}
+mdp_out <- mdp_historical(transitions, reward, discount, state = y, action = a)
+```
+
+```{r}
+## Merge and plot resulting optimal solutions
+historical <- left_join(rename(plus_out$df, plus = optimal, state = obs),  rename(mdp_out$df, mdp = optimal))
+
+historical %>% 
+  dplyr::mutate(action = actions[action], state = states[state], plus = actions[plus], mdp = actions[mdp]) %>%
+  tidyr::gather(variable, stock, -time) %>% 
+  ggplot(aes(time, stock, color = variable)) + geom_line()  + geom_point()
+```
+
+## Compare learning
+
+```{r}
+true_i <- 2
+
+Tmax <- length(plus_out$model_posterior[[1]])
+
+# delta function for true model distribution
+h_star = array(0,dim = length(models)) 
+h_star[true_i] = 1
+## Fn for the base-2 KL divergence from true model, in a friendly format
+kl2 <- function(value) seewave::kl.dist(value, h_star, base = 2)[[2]]
+
+## Compute KL over models
+plus_out$model_posterior %>% data.frame(time = 1:Tmax, rep = 1) %>%
+  gather(model, value, -time, -rep) %>%
+  group_by(time, rep) %>% 
+  summarise(plus = kl2(value)) -> 
+  plus_KL
+
+as.data.frame(mdp_out$posterior) %>% data.frame(time = 1:Tmax, rep = 1) %>%
+  gather(model, value, -time, -rep) %>%
+  group_by(time, rep) %>% 
+  summarise(mdp = kl2(value)) -> 
+  mdp_KL
+
+left_join(mdp_KL, plus_KL) %>%
+  gather(method, KL, -time, -rep) %>%
+  
+  ggplot(aes(time, KL, col = method)) + 
+    stat_summary(geom="line", fun.y = mean, lwd = 1) #+
+    #stat_summary(geom="ribbon", fun.data = mean_se, alpha = 0.1)
+```
+
+```{r}
+Tmax <- length(plus_out$model_posterior[[1]])
+barplot(as.numeric(plus_out$model_posterior[Tmax,]))
+```
+
+
+
+## Forecast under PLUS
+
+All forecasts start from final stock, go forward an equal length of time:
+
+```{r}
+#x0 <- which.min(abs(1 - states)) # Initial stock, for hindcasts
+x0 <- y[length(y)] # Final stock, e.g. forcasts
+
+x0 <- 18
+Tmax <- length(y)
+```
+
+
+
+```{r}
+## helper function for replicates
+plus_replicate <- function(reps, expr, ...){
+  out <- parallel::mclapply(integer(reps), eval.parent(substitute(function(...) expr)), ...)
+  df <- dplyr::bind_rows(lapply(out, `[[`, 1), .id = "rep")
+  model_posterior <- dplyr::bind_rows(lapply(out, `[[`, 2), .id = "rep")
+  state_posterior <- NULL
+  if(length(out[[1]]) == 3)
+    state_posterior <- dplyr::bind_rows(lapply(out, `[[`, 3), .id = "rep")
+  list(df=df, model_posterior = model_posterior, state_posterior = state_posterior)
+}
+
+
+```
+
+Note also that forecasts start with the prior belief over states and prior belief over models that was determined from the historical data.  
+
+```{r}
+set.seed(123)
+plus_forecast <- 
+plus_replicate(50, sim_plus(models = models, discount = discount,
+                model_prior = as.numeric(plus_out$model_posterior[length(y)-1, ]),
+                state_prior = as.numeric(plus_out$state_posterior[length(y)-1, ]),
+                x0 = x0, Tmax = Tmax, 
+                true_model = models[[1]], 
+                alphas = alphas), mc.cores = 3)
+
+
+```
+
+## Forecast under MDP
+
+Simulate replicates under mdp learning (with observation uncertainty):
+
+```{r}
+set.seed(123)
+mdp_forecast <-
+plus_replicate(50, 
+       mdp_learning(transition = transitions, reward = models[[1]]$reward, 
+               discount = discount, x0 = x0,  Tmax = Tmax,
+               true_transition = transitions[[1]], observation = models[[1]]$observation))
+```
+
+```{r}
+forecast <- 
+bind_rows(
+  plus_forecast$df %>% 
+  mutate(state = states[state], action = actions[action]) %>% 
+  select(-value, -obs) %>%
+  gather(variable, stock, -time, -rep) %>% 
+  data.frame(method = "plus"),
+  
+  mdp_forecast$df %>% 
+  mutate(state = states[state], action = actions[action]) %>% 
+  select(-value, -obs) %>%
+  gather(variable, stock, -time, -rep) %>% 
+  data.frame(method = "mdp"))
+  
+  forecast %>% 
+  ggplot(aes(time, stock)) + 
+  stat_summary(aes(color = method), geom="line", fun.y = mean) +
+  stat_summary(aes(fill = method), geom="ribbon", fun.data = mean_se, alpha = 0.5) + facet_wrap(~variable, ncol = 1, scales = "free_y")
+
+```
+
+
+
+
+
+

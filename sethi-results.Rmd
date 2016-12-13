@@ -17,7 +17,7 @@ theme_set(theme_bw())
 
 
 ```{r}
-log_dir = "sethi-100"
+log_dir = "sethi-30"
 
 # alphas <- original_alphas
 # models <- original_models

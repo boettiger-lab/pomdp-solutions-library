@@ -1,0 +1,43 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/tuna/56f713463fd.pomdpx
+  loading time : 26.57s 
+
+SARSOP initializing ...
+  initialization time : 16001.19s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 16001.2 0       0        1.05206    1.93779    0.885721    100      1        
+ 16139.3 1       50       1.3673     1.92465    0.557355    143      30       
+ 16383.2 2       100      1.45401    1.92463    0.470619    73       56       
+ 16558.1 4       153      1.60101    1.92444    0.323432    37       74       
+ 16839   5       200      1.63923    1.92435    0.285123    24       100      
+Writing policy file: tuna//56f713463fd_7_17164.9.policy
+Intermediate policy written(interval: 1000)
+ 17164.9 7       259      1.71326    1.92414    0.210878    21       124      
+ 17563   8       300      1.74942    1.92409    0.174668    28       148      
+ 17897.6 10      351      1.76796    1.92406    0.156095    21       165      
+Writing policy file: tuna//56f713463fd_12_18368.3.policy
+Intermediate policy written(interval: 1000)
+ 18368.3 12      401      1.79556    1.92403    0.128479    24       185      
+ 19108.4 14      459      1.81508    1.92403    0.108953    26       210      
+Writing policy file: tuna//56f713463fd_15_19955.3.policy
+Intermediate policy written(interval: 1000)
+ 19955.3 15      500      1.82141    1.92403    0.102617    28       233      
+ 20769.5 17      550      1.82825    1.92403    0.0957766   24       252      
+Writing policy file: tuna//56f713463fd_19_21591.2.policy
+Intermediate policy written(interval: 1000)
+ 21591.2 19      600      1.83744    1.92401    0.0865736   23       273      
+Memory limit reached, trying to write out policy
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 22355   21      647      1.84436    1.92401    0.0796451   70       290      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : tuna//56f713463fd.policyx
+

@@ -1,0 +1,61 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdp-solutions-library/tuna/569713463fd.pomdpx
+  loading time : 24.61s 
+
+SARSOP initializing ...
+  initialization time : 14409.21s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 14409.2 0       0        0.612341   0.778893   0.166552    100      1        
+ 14506   1       77       0.667914   0.773506   0.105592    140      39       
+ 14610   1       100      0.667914   0.773506   0.105592    49       62       
+ 14724.6 2       150      0.689047   0.773485   0.0844374   54       83       
+ 14871.1 4       215      0.713171   0.773464   0.0602929   35       105      
+ 15021.5 5       253      0.71944    0.77344    0.0539999   28       123      
+Writing policy file: tuna//569713463fd_6_15414.4.policy
+Intermediate policy written(interval: 1000)
+ 15414.4 7       300      0.724265   0.773439   0.0491742   36       154      
+ 15874.6 8       373      0.739877   0.77326    0.0333824   33       181      
+ 16246.3 9       413      0.742237   0.773259   0.0310216   28       200      
+Writing policy file: tuna//569713463fd_10_16649.4.policy
+Intermediate policy written(interval: 1000)
+ 16649.4 10      450      0.744197   0.773258   0.0290609   38       218      
+ 17341.4 12      507      0.746101   0.773255   0.0271539   30       245      
+Writing policy file: tuna//569713463fd_12_18261.4.policy
+Intermediate policy written(interval: 1000)
+ 18261.4 12      550      0.746101   0.773255   0.0271539   47       288      
+ 18588.6 13      627      0.748821   0.773243   0.0244221   70       304      
+ 19040.2 14      663      0.750287   0.773242   0.0229557   61       322      
+Writing policy file: tuna//569713463fd_15_19617.1.policy
+Intermediate policy written(interval: 1000)
+ 19617.1 15      700      0.755267   0.773045   0.0177788   66       342      
+ 20288.8 16      755      0.755752   0.773045   0.0172927   66       366      
+Writing policy file: tuna//569713463fd_17_21025.5.policy
+Intermediate policy written(interval: 1000)
+ 21025.5 17      800      0.756414   0.773037   0.0166229   66       390      
+Writing policy file: tuna//569713463fd_19_22028.7.policy
+Intermediate policy written(interval: 1000)
+ 22028.7 19      867      0.757353   0.773036   0.0156822   82       419      
+ 22631.6 20      903      0.757793   0.773034   0.0152417   62       436      
+Writing policy file: tuna//569713463fd_21_23622.7.policy
+Intermediate policy written(interval: 1000)
+ 23622.7 21      950      0.758037   0.773034   0.0149965   69       465      
+ 24452.5 23      1000     0.760242   0.772998   0.0127563   71       486      
+Writing policy file: tuna//569713463fd_24_25433.6.policy
+Intermediate policy written(interval: 1000)
+ 25433.6 24      1050     0.760442   0.772998   0.0125556   75       513      
+ 26172.3 26      1107     0.760847   0.772997   0.0121502   68       533      
+Memory limit reached, trying to write out policy
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 26172.3 26      1108     0.760847   0.772997   0.0121502   68       533      
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : tuna//569713463fd.policyx
+
