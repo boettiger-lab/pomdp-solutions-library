@@ -1,0 +1,28 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdpplus/inst/notebook/tuna/10d6bf6eadb.pomdpx
+  loading time : 77.22s 
+
+SARSOP initializing ...
+  initialization time : 87303.00s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 87303   0       0        0.608666   0.807664   0.198998    150      1        
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  Preset timeout reached
+  Timeout     : 40000.000000s
+  Actual Time : 87303.000000s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 87317.8 0       1        0.644885   0.802462   0.157577    140      2        
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : tuna/10d6bf6eadb.policyx
+
