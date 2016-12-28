@@ -1,0 +1,11 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdpplus/inst/notebook/tuna/3446e194755.pomdpx
+  loading time : 15.72s 
+
+SARSOP initializing ...
+  initialization time : 5630.02s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
