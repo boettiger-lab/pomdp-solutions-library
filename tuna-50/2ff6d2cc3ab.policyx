@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Policy version="0.1" type="value" model="/home/rstudio/pomdpplus/inst/notebook/tuna/2ff6d2cc3ab.pomdpx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="policyx.xsd">
+<AlphaVector vectorLength="50" numObsValue="1" numVectors="1">
+<Vector action="49" obsValue="0">0.0242449 0.0487347 0.0732245 0.0977143 0.122204 0.146694 0.171184 0.195673 0.220163 0.244653 0.269143 0.293633 0.318122 0.342612 0.367102 0.391592 0.416082 0.440571 0.465061 0.489551 0.514041 0.538531 0.56302 0.58751 0.612 0.63649 0.66098 0.685469 0.709959 0.734449 0.758939 0.783429 0.807918 0.832408 0.856898 0.881388 0.905878 0.930367 0.954857 0.979347 1.00384 1.02833 1.05282 1.07731 1.1018 1.12629 1.15078 1.17527 1.19976 1.22424 </Vector>
+</AlphaVector> </Policy>

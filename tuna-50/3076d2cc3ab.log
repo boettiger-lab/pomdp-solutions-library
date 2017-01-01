@@ -1,0 +1,29 @@
+
+Loading the model ...
+  input file   : /home/rstudio/pomdpplus/inst/notebook/tuna/3076d2cc3ab.pomdpx
+  loading time : 0.88s 
+
+SARSOP initializing ...
+  initialization time : 56.99s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 56.99   0       0        0.624245   0.624245   3.88578e-14 50       1        
+ 57      0       1        0.624245   0.624245   1.92069e-14 1        2        
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  target precision reached
+  target precision  : 0.000000
+  precision reached : 0.000000 
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 57      0       1        0.624245   0.624245   1.92069e-14 1        2        
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : tuna/3076d2cc3ab.policyx
+
