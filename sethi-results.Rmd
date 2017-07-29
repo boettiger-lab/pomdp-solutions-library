@@ -9,8 +9,8 @@ output:
 library(purrr)
 library(ggplot2)
 library(dplyr)
-library(appl)
-library(printr)
+library(sarsop)
+#library(printr)
 options(knitr.table.format = 'markdown')
 theme_set(theme_bw())
 ```
@@ -57,7 +57,7 @@ dets <- purrr::map_df(1:dim(meta)[[1]], function(i){
 ```{r fig.width=10, fig.height=10}
 
 
-inter <- appl:::intermediates_from_log(meta, log_dir = log_dir)
+inter <- sarsop:::intermediates_from_log(meta, log_dir = log_dir)
 
 df1 <- 
 purrr::map_df(1:length(models), function(j){
@@ -146,7 +146,7 @@ det_policy <- get_det(meta)
 Simulation in which belief over states is updated in each time step, used to determine a new policy, which is then used to choose the best action given the most recent observation.
 
 ```{r}
-sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
+sim <- purrr::map_df(1:50, function(i) sarsop::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
 ```
 
 
@@ -183,7 +183,7 @@ m <- models_from_log(s1)[[1]]
 det_policy <- get_det(meta)
 
 
-sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
+sim <- purrr::map_df(1:50, function(i) sarsop::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
 s <- compute_policy(alpha,m$transition, m$observation, m$reward)
 sim2 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = x0, Tmax = 100, observation = m$observation, policy = s$policy), .id = "rep")
 sim3 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = x0, Tmax = 100, observation = m$observation, policy = det_policy), .id = "rep")
