@@ -1,0 +1,5 @@
+id,load_time_sec,init_time_sec,run_time_sec,final_precision,end_condition,n_states,n_obs,n_actions,discount,date,r,sigma_m,sigma_g,noise,model,K,C,precision,timeout,timeInterval,max_state,max_obs,max_action,min_state,min_obs,min_action,cost,beta
+417c36298a70,4.23,455.65,10500,0.00152831,  Preset timeout reached,100,100,100,0.95,2017-07-30 06:52:36,0.5,0.1,0.1,lognormal,allen,0.8,0.2,1e-07,10000,2000,2,2,2,0,0,0,none,0
+417a36298a70,4.42,413.93,10551.8,0.00078917,  Preset timeout reached,100,100,100,0.95,2017-07-30 06:53:35,0.5,0.1,0.1,lognormal,ricker,0.8,0.2,1e-07,10000,2000,2,2,2,0,0,0,none,0
+417b36298a70,4.62,473.3,10558.9,0.0187378,  Preset timeout reached,100,100,100,0.95,2017-07-30 06:54:03,0.5,0.4,0.1,lognormal,ricker,0.8,0.2,1e-07,10000,2000,2,2,2,0,0,0,none,0
+417d36298a70,4.68,495.69,11375.6,0.0541571,  Preset timeout reached,100,100,100,0.95,2017-07-30 07:07:27,0.5,0.4,0.1,lognormal,allen,0.8,0.2,1e-07,10000,2000,2,2,2,0,0,0,none,0
