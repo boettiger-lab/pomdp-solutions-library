@@ -9,11 +9,11 @@ output:
 library("sarsop")
 library("dplyr")
 library("parallel")
-mc.cores = 8
+mc.cores = 1
 
-log_dir = "compact-sethi-200"
+log_dir = "compact-sethi-100"
 dir.create(log_dir)
-states <- seq(0, 2.5, len=200)
+states <- seq(0, 2.5, len=120)
 actions <- states  # Vector of actions: harvest
 obs <- states
 
@@ -28,14 +28,15 @@ reward_fn <- function(x,h) pmin(x,h)
 
 
 ```{r}
-
+options(stringsAsFactors = FALSE)
 ## Ricker Models
-vars <- expand.grid(r = 0.5, 
-                    sigma_m = c(0.1, 0.4), 
-                    sigma_g = 0.1, 
+vars <- expand.grid(r = c(0.5, 0.75, 1), 
+                    sigma_m = c(0.1, 0.3, 0.4, 0.5), 
+                    sigma_g = c(0.1, 0.2), 
                     noise = c("lognormal"), 
-                    model = c("ricker", "allen"))
-fixed <- data.frame( K = K,
+                    model = c("ricker", "allen"),
+                    stringsAsFactors = FALSE)
+fixed <- data_frame( K = K,
                      C = 0.2,
                      precision = 0.0000001,
                      timeout = 10000,
@@ -58,8 +59,8 @@ system.time(
 models <- mclapply(1:dim(pars)[1], function(i){
   ## Select the model
   f <- switch(pars[i, "model"], 
-              allen = sarsop:::allen(pars[i, "r"], pars[i, "K"], pars[i, "C"]),
               ricker = sarsop:::ricker(pars[i, "r"], pars[i, "K"]),
+              allen = sarsop:::allen(pars[i, "r"], pars[i, "K"], pars[i, "C"]),
               bh = sarsop:::bh(pars[i, "r"], pars[i, "K"])
   )
   
