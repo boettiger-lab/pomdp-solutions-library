@@ -11,7 +11,7 @@ library("dplyr")
 library("parallel")
 mc.cores = 1
 
-log_dir = "compact-sethi-100"
+log_dir = "compact-sethi-120"
 dir.create(log_dir)
 states <- seq(0, 2.5, len=120)
 actions <- states  # Vector of actions: harvest
