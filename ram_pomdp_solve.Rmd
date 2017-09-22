@@ -1,0 +1,93 @@
+---
+title: "POMDP"
+author: "Carl Boettiger"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+Given a model (Ricker, R, K, sigma_m, sigma_g):
+
+- solve the POMDP
+- add to the solutions library
+
+-------
+
+
+```{r message=FALSE}
+library(sarsop)
+library(parallel)
+library(tidyverse) # for plotting
+knitr::opts_chunk$set(comment="", message=FALSE)
+mc.cores <- 6
+```
+
+
+```{r}
+states <- seq(0,2.5, length=120)
+actions <- states
+obs <- states
+reward_fn <- function(x,h) pmin(x,h)
+discount <- 0.95
+
+gs <- function(r,K){
+  function(x, h){ 
+    as.numeric(x + x * as.numeric(r) * (1 - x / as.numeric(K)) - pmin(x,h))
+  }
+}
+
+## Has par ests r, K, sigma_g; also Bmsy, MSY, PGY
+est <- read_csv("nimble_estimates_files/policies_by_stock.csv")
+
+pars <-
+  est %>% 
+  select(stockid, r, K, sigma_g) %>%
+  left_join(
+    expand.grid(stockid = est$stockid, 
+                sigma_m = c(0.1, 0.25, 0.4)))
+
+pars
+```
+
+
+
+```{r}
+
+models <- mclapply(1:dim(pars)[1], function(i){
+  ## Select the model
+  f <- gs(pars[i, "r"][[1]], pars[i, "K"][[1]])
+  
+  ## Compute matrices
+  fisheries_matrices(states, actions, obs, 
+                     reward_fn = reward_fn, 
+                     f = f, 
+                     sigma_g = pars[i, "sigma_g"][[1]], 
+                     sigma_m  = pars[i, "sigma_m"][[1]],
+                     noise = "lognormal")
+  },
+  mc.cores = mc.cores)
+  
+```
+
+## POMDP Solution
+
+```{r }
+log_dir <- "ram_pomdp_soln"
+dir.create(log_dir)
+
+system.time(
+  
+  alphas <- mclapply(1:length(models), 
+                     function(i){
+                       sarsop(models[[i]]$transition,
+                              models[[i]]$observation,
+                              models[[i]]$reward,
+                              discount = discount,
+                              precision = .000002, 
+                              timeout = 10000,
+                              log_dir = log_dir,
+                              log_data = pars[i,])
+                     },
+                     mc.cores = mc.cores)
+)
+
+```

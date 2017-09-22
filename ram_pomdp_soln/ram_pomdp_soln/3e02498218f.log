@@ -1,0 +1,30 @@
+
+Loading the model ...
+  input file   : /home/rstudio/projects/pomdp-ram/notebook/ram_pomdp_soln/3e02498218f.pomdpx
+  loading time : 7.58s 
+
+SARSOP initializing ...
+  initialization time : 30.79s
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 30.79   0       0        1.47083    1.51593    0.0451053   120      1        
+ 36.63   25      50       1.47145    1.47157    0.000125263 58       26       
+ 40.53   34      69       1.47145    1.47145    1.36552e-06 55       36       
+-------------------------------------------------------------------------------
+
+SARSOP finishing ...
+  target precision reached
+  target precision  : 0.000002
+  precision reached : 0.000001 
+
+-------------------------------------------------------------------------------
+ Time   |#Trial |#Backup |LBound    |UBound    |Precision  |#Alphas |#Beliefs  
+-------------------------------------------------------------------------------
+ 40.53   34      69       1.47145    1.47145    1.36552e-06 53       36       
+-------------------------------------------------------------------------------
+
+Writing out policy ...
+  output file : ram_pomdp_soln/3e02498218f.policyx
+

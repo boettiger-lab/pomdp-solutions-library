@@ -6,10 +6,8 @@ output:
 ---  
 
 ```{r message=FALSE}
-library(purrr)
-library(ggplot2)
-library(dplyr)
-library(appl)
+library(tidyverse)
+library(sarsop)
 library(printr)
 options(knitr.table.format = 'markdown')
 theme_set(theme_bw())
@@ -17,7 +15,7 @@ theme_set(theme_bw())
 
 
 ```{r}
-log_dir = "sethi-30"
+log_dir = "compact-sethi-100"
 
 # alphas <- original_alphas
 # models <- original_models
@@ -57,7 +55,7 @@ dets <- purrr::map_df(1:dim(meta)[[1]], function(i){
 ```{r fig.width=10, fig.height=10}
 
 
-inter <- appl:::intermediates_from_log(meta, log_dir = log_dir)
+inter <- sarsop:::intermediates_from_log(meta, log_dir = log_dir)
 
 df1 <- 
 purrr::map_df(1:length(models), function(j){
@@ -91,32 +89,24 @@ meta$model_id <- as.character(1:length(models))
 ## Join to deterministic case
 df2 <- bind_rows(
   left_join(df, meta, by = "model_id"),
-  left_join(dets, meta, by = "model_id") %>% mutate(sigma_m = 0))
+  left_join(dets, meta, by = "model_id") %>% 
+  mutate(sigma_m = 0))
 
 ```
 
 
-## Lognormal noise
 
-
-```{r  fig.width=10, fig.height=10}
-df2 %>% filter(r == 1, noise == "lognormal") %>% 
-  ggplot(aes(states[state], states[state] - actions[policy], col = as.character(sigma_m))) +
+```{r }
+df2 %>% 
+  mutate(states = states[state],
+         escapement = states[state] - actions[policy],
+         sigma_m = as.character(sigma_m)) %>%
+  ggplot(aes(states, escapement, col = sigma_m)) +
   geom_line() +
   facet_grid(model ~ sigma_g, scales = "free") +
-  coord_cartesian(ylim = c(0,0.8))
+  coord_cartesian(ylim = c(0,0.8), xlim=c(0,1))
 ```
 
-
-## Uniform
-
-```{r  fig.width=10, fig.height=10}
-df2 %>% filter(r == 1, noise == "uniform") %>% 
-  ggplot(aes(states[state], states[state] - actions[policy], col = as.character(sigma_m))) +
-  geom_line() +
-  facet_grid(model ~ sigma_g, scales = "free") +
-  coord_cartesian(ylim = c(0,0.8))
-```
 
 
 
@@ -146,7 +136,7 @@ det_policy <- get_det(meta)
 Simulation in which belief over states is updated in each time step, used to determine a new policy, which is then used to choose the best action given the most recent observation.
 
 ```{r}
-sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
+sim <- purrr::map_df(1:50, function(i) sarsop::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
 ```
 
 
@@ -183,7 +173,7 @@ m <- models_from_log(s1)[[1]]
 det_policy <- get_det(meta)
 
 
-sim <- purrr::map_df(1:50, function(i) appl::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
+sim <- purrr::map_df(1:50, function(i) sarsop::sim_pomdp(m$transition, m$observation, m$reward, discount, x0 = x0, Tmax = 100, alpha = alpha)$df, .id = "rep")
 s <- compute_policy(alpha,m$transition, m$observation, m$reward)
 sim2 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = x0, Tmax = 100, observation = m$observation, policy = s$policy), .id = "rep")
 sim3 <- purrr::map_df(1:50, function(i) mdplearning::mdp_planning(m$transition, m$reward, discount, x0 = x0, Tmax = 100, observation = m$observation, policy = det_policy), .id = "rep")
