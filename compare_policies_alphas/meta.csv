@@ -1,0 +1,2 @@
+id,load_time_sec,init_time_sec,run_time_sec,final_precision,end_condition,n_states,n_obs,n_actions,discount,date,model,r,K,sigma_g,sigma_m,noise
+compare_policies,4.28,764.85,10600.1,0.140026,  Preset timeout reached,100,100,100,0.95,2017-09-26 07:17:34,gs,0.75,1,0.1,0.2,normal
